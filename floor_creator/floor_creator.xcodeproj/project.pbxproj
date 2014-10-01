@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */; };
+		10EEA5EF19DC8A58004D9A74 /* Rangefinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */; };
+		10EEA5F119DC8C6C004D9A74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */; };
+		10EEA5F319DC8C7B004D9A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F219DC8C7B004D9A74 /* UIKit.framework */; };
+		10EEA5F519DC8C82004D9A74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F419DC8C82004D9A74 /* Foundation.framework */; };
 		7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */; };
 		7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */; };
 		7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */; };
@@ -28,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateRoomView.swift; path = ../CreateRoomView.swift; sourceTree = "<group>"; };
+		10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rangefinder.swift; sourceTree = "<group>"; };
+		10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		10EEA5F219DC8C7B004D9A74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		10EEA5F419DC8C82004D9A74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7B87DD0419DC4A7B00DEAF73 /* floor_creator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = floor_creator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87DD0819DC4A7B00DEAF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10EEA5F519DC8C82004D9A74 /* Foundation.framework in Frameworks */,
+				10EEA5F319DC8C7B004D9A74 /* UIKit.framework in Frameworks */,
+				10EEA5F119DC8C6C004D9A74 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +72,9 @@
 		7B87DCFB19DC4A7B00DEAF73 = {
 			isa = PBXGroup;
 			children = (
+				10EEA5F419DC8C82004D9A74 /* Foundation.framework */,
+				10EEA5F219DC8C7B004D9A74 /* UIKit.framework */,
+				10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */,
 				7B87DD0619DC4A7B00DEAF73 /* floor_creator */,
 				7B87DD1C19DC4A7B00DEAF73 /* floor_creatorTests */,
 				7B87DD0519DC4A7B00DEAF73 /* Products */,
@@ -80,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */,
+				10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */,
 				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
@@ -216,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */,
+				10EEA5EF19DC8A58004D9A74 /* Rangefinder.swift in Sources */,
 				7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */,
 				7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */,
 			);
