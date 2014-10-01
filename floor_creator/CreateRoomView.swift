@@ -13,6 +13,7 @@ class CreateRoomView: UIView {
 
     var captureButton: UIButton = UIButton();
     var title: UILabel = UILabel();
+    var distanceLabel: UILabel = UILabel();
     
     let arrowNorth = UIImage(named: "CircleArrow");
     let arrowNorth_on = UIImage(named: "CircleArrow_on");
@@ -46,12 +47,22 @@ class CreateRoomView: UIView {
         self.layer.borderWidth = 2.0;
         self.layer.borderColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [0.1, 0.1, 0.1, 0.1]);
         
+        // add the labels
         var labelRect = CGRect(x: 0, y: 20.0, width: self.frame.size.width, height: 20.0);
         title.frame = labelRect;
         title.textAlignment = NSTextAlignment.Center;
         title.textColor = UIColor.grayColor();
         title.text = "Point to the first wall and click capture";
+        
+        labelRect = CGRect(x: 0, y: 180.0, width: self.frame.size.width, height: 50.0);
+        distanceLabel.frame = labelRect;
+        distanceLabel.textAlignment = NSTextAlignment.Center;
+        distanceLabel.textColor = UIColor.blackColor();
+        distanceLabel.font = UIFont(name:"Helvetica", size: 28.0)
+        distanceLabel.text = cmToFeetInches(500);
+        
         self.addSubview(title);
+        self.addSubview(distanceLabel);
         
         // draw the arrow images
         let arrowNorthArray: [UIImage] = [arrowNorth, arrowNorth_on];
