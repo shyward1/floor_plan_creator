@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         var createRoomView = CreateRoomView(frame: rect);
         
         self.view.addSubview(createRoomView);
-    }
+    } 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
