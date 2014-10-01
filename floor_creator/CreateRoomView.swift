@@ -11,11 +11,13 @@ import UIKit
 
 class CreateRoomView: UIView {
 
+    var captureButton: UIButton = UIButton();
     var title: UILabel = UILabel();
     
     let arrowNorth = UIImage(named: "CircleArrow");
     let arrowNorth_on = UIImage(named: "CircleArrow_on");
     let arrowNorthArray: [UIImage]!
+    let checkmark = UIImage(named: "checkmark");
     
     var imgView_arrowNorth: UIImageView!
     
@@ -48,11 +50,10 @@ class CreateRoomView: UIView {
         title.frame = labelRect;
         title.textAlignment = NSTextAlignment.Center;
         title.textColor = UIColor.grayColor();
-        title.text = "Point towards the first wall to measure it";
+        title.text = "Point to the first wall and click capture";
         self.addSubview(title);
         
         // draw the arrow images
-        /*imgView_arrowNorth = UIImageView(image: arrowNorth);*/
         let arrowNorthArray: [UIImage] = [arrowNorth, arrowNorth_on];
         
         imgView_arrowNorth = UIImageView();
@@ -65,20 +66,49 @@ class CreateRoomView: UIView {
         imgView_arrowNorth?.frame = arrowNorthImgRect;
         self.addSubview(imgView_arrowNorth);
         imgView_arrowNorth.startAnimating();
+        
+        // draw the capture circle button
+        captureButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton;
+        captureButton.setTitle("capture", forState: .Normal);
+        captureButton.setTitleColor(UIColor.orangeColor(), forState: .Normal);
+        captureButton.titleLabel?.font = UIFont(name:"Helvetica", size: 14.0)
+        captureButton.addTarget(self, action: "capture:", forControlEvents: .TouchUpInside);
+        var captureButtonRect = CGRect(x: 5, y: self.frame.size.height/2, width: 64.0, height: 64.0);
+        captureButton.frame = captureButtonRect;
+        captureButton.clipsToBounds = true;
+        captureButton.layer.cornerRadius = 64.0/2.0;
+        captureButton.layer.borderColor = UIColor.orangeColor().CGColor;
+        captureButton.layer.borderWidth = 2.0;
+        self.addSubview(captureButton);
+        
+        
+
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     }
+
     
     
-    
-    
+    func capture(sender: UIButton!) {
+        println("capture button clicked.");
+    }
     
     override func drawRect(rect: CGRect) {
 
     }
 
     
+    // Utility routine to convert cm to feet and inches
+    func cmToFeetInches(cm: Int) -> String {
+        var inches: Float = Float(cm) / 2.54;
+        var feet: Int = Int(inches)  / 12;
+        
+        inches = inches - (12 * Float(feet));
+        return String(format: "%d' %.1f\"", feet, inches);
+    }
+    
+       
     
 }
