@@ -12,7 +12,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // init Create Room View
+        var rect = CGRect(x: 60.0, y: 60.0, width: self.view.frame.size.width/2-60, height: self.view.frame.size.height-120);
+        var createRoomView = CreateRoomView(frame: rect);
+        
+        self.view.addSubview(createRoomView);
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */; };
 		7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */; };
 		7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */; };
 		7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateRoomView.swift; path = ../CreateRoomView.swift; sourceTree = "<group>"; };
 		7B87DD0419DC4A7B00DEAF73 /* floor_creator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = floor_creator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87DD0819DC4A7B00DEAF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		7B87DD0619DC4A7B00DEAF73 /* floor_creator */ = {
 			isa = PBXGroup;
 			children = (
+				10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */,
 				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */,
 				7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */,
 				7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */,
 			);
@@ -407,6 +411,7 @@
 				7B87DD2519DC4A7B00DEAF73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B87DD2619DC4A7B00DEAF73 /* Build configuration list for PBXNativeTarget "floor_creatorTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				7B87DD2819DC4A7B00DEAF73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
