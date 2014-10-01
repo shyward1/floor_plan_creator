@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */; };
-		10EEA5EF19DC8A58004D9A74 /* Rangefinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */; };
 		10EEA5F119DC8C6C004D9A74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */; };
 		10EEA5F319DC8C7B004D9A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F219DC8C7B004D9A74 /* UIKit.framework */; };
 		10EEA5F519DC8C82004D9A74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F419DC8C82004D9A74 /* Foundation.framework */; };
@@ -32,7 +31,6 @@
 
 /* Begin PBXFileReference section */
 		10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateRoomView.swift; path = ../CreateRoomView.swift; sourceTree = "<group>"; };
-		10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rangefinder.swift; sourceTree = "<group>"; };
 		10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		10EEA5F219DC8C7B004D9A74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		10EEA5F419DC8C82004D9A74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */,
-				10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */,
 				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
@@ -231,7 +228,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */,
-				10EEA5EF19DC8A58004D9A74 /* Rangefinder.swift in Sources */,
 				7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */,
 				7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */,
 			);
