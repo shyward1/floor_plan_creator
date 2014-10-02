@@ -16,6 +16,8 @@
 		7B87DD2A19DC737B00DEAF73 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B87DD2919DC737B00DEAF73 /* CoreMotion.framework */; };
 		7B87DD2C19DC738000DEAF73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B87DD2B19DC738000DEAF73 /* Foundation.framework */; };
 		7B87DD2E19DC738800DEAF73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B87DD2D19DC738800DEAF73 /* UIKit.framework */; };
+		7B87DD3419DCA25E00DEAF73 /* women.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD3319DCA25E00DEAF73 /* women.png */; };
+		7B87DD3619DDD14600DEAF73 /* ViewMoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD3519DDD14600DEAF73 /* ViewMoverController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		7B87DD2919DC737B00DEAF73 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		7B87DD2B19DC738000DEAF73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7B87DD2D19DC738800DEAF73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7B87DD3319DCA25E00DEAF73 /* women.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = women.png; sourceTree = "<group>"; };
+		7B87DD3519DDD14600DEAF73 /* ViewMoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMoverController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +97,10 @@
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
 				7B87DD1019DC4A7B00DEAF73 /* Images.xcassets */,
+				7B87DD3319DCA25E00DEAF73 /* women.png */,
 				7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */,
 				7B87DD0719DC4A7B00DEAF73 /* Supporting Files */,
+				7B87DD3519DDD14600DEAF73 /* ViewMoverController.swift */,
 			);
 			path = floor_creator;
 			sourceTree = "<group>";
@@ -206,6 +212,7 @@
 			files = (
 				7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */,
 				7B87DD1419DC4A7B00DEAF73 /* LaunchScreen.xib in Resources */,
+				7B87DD3419DCA25E00DEAF73 /* women.png in Resources */,
 				7B87DD1119DC4A7B00DEAF73 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B87DD3619DDD14600DEAF73 /* ViewMoverController.swift in Sources */,
 				7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */,
 				7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */,
 			);
@@ -421,6 +429,7 @@
 				7B87DD2519DC4A7B00DEAF73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B87DD2619DC4A7B00DEAF73 /* Build configuration list for PBXNativeTarget "floor_creatorTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +438,7 @@
 				7B87DD2819DC4A7B00DEAF73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

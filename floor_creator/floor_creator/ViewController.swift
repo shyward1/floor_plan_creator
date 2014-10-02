@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var degreeField: UILabel!
 
     @IBOutlet weak var levelDrawingView: UIView!
+    @IBOutlet weak var nextButton: UIButton!
     
     let motionManager: CMMotionManager = CMMotionManager()
 
@@ -22,16 +23,32 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         motionManager.deviceMotionUpdateInterval = 0.01
-        //motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
-        //    deviceManager, error in
-        //    println("Z Data: \(deviceManager.acceleration.y)") // no print
-        //})
         motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.currentQueue(),
             withHandler: motionUpdated)
         
         println(motionManager.deviceMotionActive) // print false
+
+    }
+
+    /*
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        var touch: AnyObject? = event.allTouches()?.anyObject()
+        if(touch?.view == imageOutlet)
+        {
+            let location = touch?.locationInView(self.view)
+            imageOutlet.center = location!;
+        }
     }
     
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        var touch: AnyObject? = event.allTouches()?.anyObject()
+        if(touch?.view == imageOutlet)
+        {
+            let location = touch?.locationInView(self.view)
+            imageOutlet.center = location!;
+        }
+    }
+    */
     override func viewWillDisappear(animated: Bool) {
         motionManager.stopDeviceMotionUpdates()
     }
