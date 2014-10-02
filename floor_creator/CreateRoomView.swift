@@ -21,7 +21,7 @@ class CreateRoomView: UIView {
     let checkmark = UIImage(named: "checkmark");
     
     var imgView_arrowNorth: UIImageView!
-    
+        
     // represents a measurement from somewhere inside the room to the wall on the north side of the room, in cm.
     // the height of the room is distanceToNorthWall + distanceToSouthWall
     var distanceToNorthWall: Int = 0;
@@ -59,7 +59,7 @@ class CreateRoomView: UIView {
         distanceLabel.textAlignment = NSTextAlignment.Center;
         distanceLabel.textColor = UIColor.blackColor();
         distanceLabel.font = UIFont(name:"Helvetica", size: 28.0)
-        distanceLabel.text = cmToFeetInches(500);
+        distanceLabel.text = "";
         
         self.addSubview(title);
         self.addSubview(distanceLabel);
@@ -91,8 +91,6 @@ class CreateRoomView: UIView {
         captureButton.layer.borderColor = UIColor.orangeColor().CGColor;
         captureButton.layer.borderWidth = 2.0;
         self.addSubview(captureButton);
-        
-        
 
     }
 
@@ -101,13 +99,12 @@ class CreateRoomView: UIView {
     }
 
     
-    
     func capture(sender: UIButton!) {
         println("capture button clicked.");
     }
     
     override func drawRect(rect: CGRect) {
-
+        
     }
 
     
@@ -119,7 +116,5 @@ class CreateRoomView: UIView {
         inches = inches - (12 * Float(feet));
         return String(format: "%d' %.1f\"", feet, inches);
     }
-    
-       
     
 }

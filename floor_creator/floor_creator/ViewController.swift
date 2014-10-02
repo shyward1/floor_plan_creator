@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var rangefinder: Rangefinder!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,6 +20,10 @@ class ViewController: UIViewController {
         var createRoomView = CreateRoomView(frame: rect);
         
         self.view.addSubview(createRoomView);
+        
+        // instantiate Rangefinder and start video capture
+        rangefinder = Rangefinder();
+        rangefinder.distanceLabel = createRoomView.distanceLabel;
     } 
 
     override func didReceiveMemoryWarning() {
