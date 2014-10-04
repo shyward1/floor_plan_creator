@@ -12,6 +12,7 @@
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+
 @interface Rangefinder (InternalMethods)
 - (void)setupAVCapture;
 - (void)teardownAVCapture;
@@ -94,6 +95,8 @@
         
         // start the AVCapture session
         [session startRunning];
+        _isRunning = YES;
+        NSLog(@"started running");
     }
     else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Failed with error %d", (int)[error code]]
@@ -102,6 +105,7 @@
                                                   cancelButtonTitle:@"Dismiss"
                                                   otherButtonTitles:nil];
         [alertView show];
+        _isRunning = NO;
     }
 }
 
@@ -110,6 +114,7 @@
 {
     videoDataOutput = nil;
     videoDataOutputQueue = nil;
+    _isRunning = NO;
 }
 
 
@@ -233,17 +238,15 @@
             zero_counter = 0;
         }
         
-        NSLog(@"total brightness: %u", b);
-        NSLog(@"zero counter: %u", zero_counter);
+        //NSLog(@"total brightness: %u", b);
+        //NSLog(@"zero counter: %u", zero_counter);
         
         if (bit_counter == 16) {
              dispatch_async(dispatch_get_main_queue(), ^{
-                 _distanceLabel.text = [NSString stringWithFormat:@"%d", buffer];
+                 _distance = buffer;
             });
 
         }
     }
 }
-
-
 @end

@@ -27,6 +27,7 @@
     int zero_counter;
 }
 
-@property (assign) UILabel* distanceLabel;
+@property (assign) int distance;
+@property (readonly) BOOL isRunning;
 
 @end
