@@ -28,6 +28,8 @@ class CreateRoomView: UIView {
     var imgView_West: UIImageView!
     
     var rangefinder: Rangefinder!
+
+    var timer: NSTimer!
     
     // keeps track of which wall is being measured
     enum Direction {
@@ -151,29 +153,12 @@ class CreateRoomView: UIView {
         self.addSubview(captureButton);
 
         // kick off background queue
-        startRangefinderUpdateThread();
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "displayDistance", userInfo: nil, repeats: true);
+
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
-    }
-
-
-    // background queue for updating rangefinder distance on this view
-    func startRangefinderUpdateThread() {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT;
-        let rangefinder_queue: dispatch_queue_t! = dispatch_queue_create("com.adt.innovation.floor_plan.rangefinder", nil);
-        
-        dispatch_async(rangefinder_queue, { ()->() in
-            // sleep for a bit to let the rangefinder finish initializing
-            sleep(2);
-            
-            println("\(self.rangefinder.isRunning)");
-            while (self.rangefinder.isRunning) {
-                sleep(1);
-                self.displayDistance(Int(self.rangefinder.distance));
-            }
-        });
     }
 
     
@@ -200,9 +185,9 @@ class CreateRoomView: UIView {
         
     }
    
-    func displayDistance(distance: Int) {
+    func displayDistance() {
         // display distance in the label
-        self.distance = distance;
+        self.distance = Int(self.rangefinder.distance);
         self.distanceLabel.text = self.cmToFeetInches(self.distance!);
     }
     
