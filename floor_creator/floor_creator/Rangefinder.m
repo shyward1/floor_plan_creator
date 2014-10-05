@@ -23,6 +23,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        _distance = 0;
         [self setupAVCapture];
     }
     return self;
