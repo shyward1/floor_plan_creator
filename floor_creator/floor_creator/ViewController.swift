@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // init Create Room View
-        var rect = CGRect(x: 60.0, y: 60.0, width: self.view.frame.size.width/2-60, height: self.view.frame.size.height-120);
+        var rect = CGRect(x: 40.0, y: 40.0, width: self.view.frame.size.width/2-40, height: self.view.frame.size.height-80);
         var createRoomView = CreateRoomView(frame: rect);
         
         self.view.addSubview(createRoomView);
@@ -22,7 +22,6 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 

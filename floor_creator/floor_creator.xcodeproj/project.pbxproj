@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10210D6F19DDA4A0000C0295 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D6E19DDA4A0000C0295 /* ImageIO.framework */; };
+		10210D7119DDA4A6000C0295 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D7019DDA4A6000C0295 /* QuartzCore.framework */; };
+		10210D7319DDA4AC000C0295 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D7219DDA4AC000C0295 /* CoreMedia.framework */; };
+		1048740D19DDA4D50077061F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048740C19DDA4D50077061F /* CoreGraphics.framework */; };
+		1048740F19DDA4DB0077061F /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048740E19DDA4DB0077061F /* CoreImage.framework */; };
+		1048741119DDA4F50077061F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048741019DDA4F50077061F /* CoreVideo.framework */; };
+		1048741319DDA5130077061F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048741219DDA5130077061F /* AssetsLibrary.framework */; };
 		10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */; };
-		10EEA5EF19DC8A58004D9A74 /* Rangefinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */; };
 		10EEA5F119DC8C6C004D9A74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */; };
 		10EEA5F319DC8C7B004D9A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F219DC8C7B004D9A74 /* UIKit.framework */; };
 		10EEA5F519DC8C82004D9A74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F419DC8C82004D9A74 /* Foundation.framework */; };
+		10EEA5F819DC97A7004D9A74 /* Rangefinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5F719DC97A7004D9A74 /* Rangefinder.m */; };
 		7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */; };
 		7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */; };
 		7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */; };
@@ -31,11 +38,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10210D6E19DDA4A0000C0295 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		10210D7019DDA4A6000C0295 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		10210D7219DDA4AC000C0295 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1048740C19DDA4D50077061F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1048740E19DDA4DB0077061F /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		1048741019DDA4F50077061F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		1048741219DDA5130077061F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateRoomView.swift; path = ../CreateRoomView.swift; sourceTree = "<group>"; };
-		10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rangefinder.swift; sourceTree = "<group>"; };
 		10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		10EEA5F219DC8C7B004D9A74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		10EEA5F419DC8C82004D9A74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		10EEA5F619DC97A6004D9A74 /* floor_creator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "floor_creator-Bridging-Header.h"; sourceTree = "<group>"; };
+		10EEA5F719DC97A7004D9A74 /* Rangefinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rangefinder.m; sourceTree = "<group>"; };
+		10EEA5F919DC9810004D9A74 /* Rangefinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rangefinder.h; sourceTree = "<group>"; };
 		7B87DD0419DC4A7B00DEAF73 /* floor_creator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = floor_creator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87DD0819DC4A7B00DEAF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +69,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1048741319DDA5130077061F /* AssetsLibrary.framework in Frameworks */,
+				1048741119DDA4F50077061F /* CoreVideo.framework in Frameworks */,
+				1048740F19DDA4DB0077061F /* CoreImage.framework in Frameworks */,
+				1048740D19DDA4D50077061F /* CoreGraphics.framework in Frameworks */,
+				10210D7319DDA4AC000C0295 /* CoreMedia.framework in Frameworks */,
+				10210D7119DDA4A6000C0295 /* QuartzCore.framework in Frameworks */,
+				10210D6F19DDA4A0000C0295 /* ImageIO.framework in Frameworks */,
 				10EEA5F519DC8C82004D9A74 /* Foundation.framework in Frameworks */,
 				10EEA5F319DC8C7B004D9A74 /* UIKit.framework in Frameworks */,
 				10EEA5F119DC8C6C004D9A74 /* AVFoundation.framework in Frameworks */,
@@ -72,6 +95,13 @@
 		7B87DCFB19DC4A7B00DEAF73 = {
 			isa = PBXGroup;
 			children = (
+				1048741219DDA5130077061F /* AssetsLibrary.framework */,
+				1048741019DDA4F50077061F /* CoreVideo.framework */,
+				1048740E19DDA4DB0077061F /* CoreImage.framework */,
+				1048740C19DDA4D50077061F /* CoreGraphics.framework */,
+				10210D7219DDA4AC000C0295 /* CoreMedia.framework */,
+				10210D7019DDA4A6000C0295 /* QuartzCore.framework */,
+				10210D6E19DDA4A0000C0295 /* ImageIO.framework */,
 				10EEA5F419DC8C82004D9A74 /* Foundation.framework */,
 				10EEA5F219DC8C7B004D9A74 /* UIKit.framework */,
 				10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */,
@@ -94,13 +124,15 @@
 			isa = PBXGroup;
 			children = (
 				10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */,
-				10EEA5EE19DC8A58004D9A74 /* Rangefinder.swift */,
 				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
 				7B87DD1019DC4A7B00DEAF73 /* Images.xcassets */,
 				7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */,
 				7B87DD0719DC4A7B00DEAF73 /* Supporting Files */,
+				10EEA5F919DC9810004D9A74 /* Rangefinder.h */,
+				10EEA5F719DC97A7004D9A74 /* Rangefinder.m */,
+				10EEA5F619DC97A6004D9A74 /* floor_creator-Bridging-Header.h */,
 			);
 			path = floor_creator;
 			sourceTree = "<group>";
@@ -231,7 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */,
-				10EEA5EF19DC8A58004D9A74 /* Rangefinder.swift in Sources */,
+				10EEA5F819DC97A7004D9A74 /* Rangefinder.m in Sources */,
 				7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */,
 				7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */,
 			);
@@ -358,9 +390,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = floor_creator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "floor_creator/floor_creator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -368,9 +404,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = floor_creator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "floor_creator/floor_creator-Bridging-Header.h";
 			};
 			name = Release;
 		};
