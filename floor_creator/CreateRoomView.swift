@@ -8,9 +8,15 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 
-class CreateRoomView: UIView {
+class CreateRoomView: UIView, CLLocationManagerDelegate {
+    
+    // used for keeping track of the direction the user is facing
+    var locationManager: CLLocationManager?
+    var currentHeading: CLHeading?
+    
     let π = CGFloat(M_PI);
     
     var captureButton: UIButton = UIButton();
@@ -67,6 +73,18 @@ class CreateRoomView: UIView {
         rangefinder = Rangefinder();
         
         currentDirection = .NORTH;
+        
+        // initialize CLLocationManager and heading
+        currentHeading = CLHeading();
+        locationManager = CLLocationManager();
+        if(locationManager!.respondsToSelector("requestAlwaysAuthorization")) {
+            locationManager!.requestAlwaysAuthorization();
+        }
+        locationManager!.delegate = self
+        locationManager!.pausesLocationUpdatesAutomatically = false
+        locationManager!.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager!.headingFilter = 1;
+        locationManager!.startUpdatingHeading();
         
         // set border and background color
         self.backgroundColor = UIColor.whiteColor();
@@ -162,6 +180,9 @@ class CreateRoomView: UIView {
     }
 
     
+// MARK: - View Methods
+
+    
     // saves distance reading and prepares the view to capture the next distance measurement
     func capture(sender: UIButton!) {
         
@@ -180,7 +201,7 @@ class CreateRoomView: UIView {
         
         displayNextDirection();
     }
-    
+
     override func drawRect(rect: CGRect) {
         
     }
@@ -245,8 +266,10 @@ class CreateRoomView: UIView {
         }
     }
     
+// MARK: - Utility Methods
+    
     // Utility routine to convert cm to feet and inches
-    func cmToFeetInches(cm: Int) -> String {
+    private func cmToFeetInches(cm: Int) -> String {
         var inches: Float = Float(cm) / 2.54;
         var feet: Int = Int(inches)  / 12;
         
@@ -254,6 +277,30 @@ class CreateRoomView: UIView {
         return String(format: "%d' %.1f\"", feet, inches);
     }
 
+}
+
+extension CreateRoomView: CLLocationManagerDelegate {
+
+// MARK: - Location Manager Methods
+    func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
+        self.currentHeading = newHeading;
+        print("Heading: ");
+        println(newHeading.magneticHeading);
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        println("didUpdateLocations");
+    }
+    
+    func locationManagerShouldDisplayHeadingCalibration(manager: CLLocationManager!) -> Bool {
+        if (self.currentHeading == nil) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     
 }
+
 

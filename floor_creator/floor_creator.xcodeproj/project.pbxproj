@@ -14,6 +14,7 @@
 		1048740F19DDA4DB0077061F /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048740E19DDA4DB0077061F /* CoreImage.framework */; };
 		1048741119DDA4F50077061F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048741019DDA4F50077061F /* CoreVideo.framework */; };
 		1048741319DDA5130077061F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048741219DDA5130077061F /* AssetsLibrary.framework */; };
+		104C4E4E19E2DDC0009146C2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104C4E4D19E2DDC0009146C2 /* CoreLocation.framework */; };
 		10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */; };
 		10EEA5F119DC8C6C004D9A74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */; };
 		10EEA5F319DC8C7B004D9A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F219DC8C7B004D9A74 /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */; };
 		7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */; };
 		7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */; };
-		7B87DD1119DC4A7B00DEAF73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD1019DC4A7B00DEAF73 /* Images.xcassets */; };
 		7B87DD1419DC4A7B00DEAF73 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */; };
 		7B87DD2019DC4A7B00DEAF73 /* floor_creatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD1F19DC4A7B00DEAF73 /* floor_creatorTests.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +45,7 @@
 		1048740E19DDA4DB0077061F /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		1048741019DDA4F50077061F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		1048741219DDA5130077061F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		104C4E4D19E2DDC0009146C2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateRoomView.swift; path = ../CreateRoomView.swift; sourceTree = "<group>"; };
 		10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		10EEA5F219DC8C7B004D9A74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -57,7 +58,6 @@
 		7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7B87DD0E19DC4A7B00DEAF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7B87DD1019DC4A7B00DEAF73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7B87DD1319DC4A7B00DEAF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7B87DD1919DC4A7B00DEAF73 /* floor_creatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = floor_creatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87DD1E19DC4A7B00DEAF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104C4E4E19E2DDC0009146C2 /* CoreLocation.framework in Frameworks */,
 				1048741319DDA5130077061F /* AssetsLibrary.framework in Frameworks */,
 				1048741119DDA4F50077061F /* CoreVideo.framework in Frameworks */,
 				1048740F19DDA4DB0077061F /* CoreImage.framework in Frameworks */,
@@ -95,6 +96,7 @@
 		7B87DCFB19DC4A7B00DEAF73 = {
 			isa = PBXGroup;
 			children = (
+				104C4E4D19E2DDC0009146C2 /* CoreLocation.framework */,
 				1048741219DDA5130077061F /* AssetsLibrary.framework */,
 				1048741019DDA4F50077061F /* CoreVideo.framework */,
 				1048740E19DDA4DB0077061F /* CoreImage.framework */,
@@ -127,7 +129,6 @@
 				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
-				7B87DD1019DC4A7B00DEAF73 /* Images.xcassets */,
 				7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */,
 				7B87DD0719DC4A7B00DEAF73 /* Supporting Files */,
 				10EEA5F919DC9810004D9A74 /* Rangefinder.h */,
@@ -244,7 +245,6 @@
 			files = (
 				7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */,
 				7B87DD1419DC4A7B00DEAF73 /* LaunchScreen.xib in Resources */,
-				7B87DD1119DC4A7B00DEAF73 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
