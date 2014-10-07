@@ -22,6 +22,10 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
     
     let π = CGFloat(M_PI);
     
+    // the amount of additional distance to add to a room width or height that wasn't measured due to the
+    // person holding the iPad away from their body.  2' is ~61cm.
+    let DISTANCE_BODY_OFFSET = 61;
+    
     var captureButton: UIButton = UIButton();
     var title: UILabel = UILabel();
     var distanceLabel: UILabel = UILabel();
@@ -49,11 +53,12 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
     var imgView_East: UIImageView!
     var imgView_West: UIImageView!
     
+    /*
     var lblDistance_North: UILabel!
     var lblDistance_South: UILabel!
     var lblDistance_East: UILabel!
     var lblDistance_West: UILabel!
-    
+    */
     var rangefinder: Rangefinder!
 
     var timer: NSTimer!
@@ -88,6 +93,8 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
     // represents a measurement from somewhere inside the room to the west facing wall, in cm.
     // the width of the room is distanceToEastWall + distanceToWestWall
     var distanceToWestWall = 0;
+    
+    var isFinishedMeasuring: Bool = false;
     
     override init(frame: CGRect) {
         super.init(frame: frame);
@@ -131,7 +138,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
         distanceLabel.frame = labelRect;
         distanceLabel.textAlignment = NSTextAlignment.Center;
         distanceLabel.textColor = UIColor.blackColor();
-        distanceLabel.font = UIFont(name:"Helvetica", size: 24.0);
+        distanceLabel.font = UIFont(name:"Helvetica", size: 20.0);
         distanceLabel.text = "";
         floatingCanvas.addSubview(distanceLabel);
         
@@ -149,12 +156,14 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
         floatingCanvas.addSubview(imgView_North);
         imgView_North.startAnimating();
         
+        /*
         lblDistance_North = UILabel();
         lblDistance_North.textAlignment = NSTextAlignment.Center;
         lblDistance_North.textColor = UIColor.blackColor();
         lblDistance_North.font = UIFont(name:"Helvetica", size: 10.0);
         lblDistance_North.hidden = true;
         floatingCanvas.addSubview(lblDistance_North);
+        */
         
         imgView_East = UIImageView();
         imgView_East.animationImages = arrowArray;
@@ -169,14 +178,16 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
         imgView_East.startAnimating();
         // rotate the arrow image by 90˚
         imgView_East.transform = CGAffineTransformMakeRotation(π/2);
-
+        
+        /*
         lblDistance_East = UILabel();
         lblDistance_East.textAlignment = NSTextAlignment.Center;
         lblDistance_East.textColor = UIColor.blackColor();
         lblDistance_East.font = UIFont(name:"Helvetica", size: 10.0);
         lblDistance_East.hidden = true;
+        lblDistance_East.transform = CGAffineTransformMakeRotation(π/2);
         floatingCanvas.addSubview(lblDistance_East);
-
+        */
         
         imgView_South = UIImageView();
         imgView_South.animationImages = arrowArray;
@@ -191,13 +202,15 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
         imgView_South.startAnimating();
         imgView_South.transform = CGAffineTransformMakeRotation(π);
         
+        /*
         lblDistance_South = UILabel();
         lblDistance_South.textAlignment = NSTextAlignment.Center;
         lblDistance_South.textColor = UIColor.blackColor();
         lblDistance_South.font = UIFont(name:"Helvetica", size: 10.0);
         lblDistance_South.hidden = true;
         floatingCanvas.addSubview(lblDistance_South);
-
+        */
+        
         imgView_West = UIImageView();
         imgView_West.animationImages = arrowArray;
         imgView_West.animationDuration = 1.0;
@@ -211,26 +224,27 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
         imgView_West.startAnimating();
         imgView_West.transform = CGAffineTransformMakeRotation(-π/2);
         
+        /*
         lblDistance_West = UILabel();
         lblDistance_West.textAlignment = NSTextAlignment.Center;
         lblDistance_West.textColor = UIColor.blackColor();
         lblDistance_West.font = UIFont(name:"Helvetica", size: 10.0);
         lblDistance_West.hidden = true;
         floatingCanvas.addSubview(lblDistance_West);
-
+        */
         
         // draw the capture circle button
         captureButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton;
         captureButton.setTitle("capture", forState: .Normal);
-        captureButton.setTitleColor(UIColor.orangeColor(), forState: .Normal);
+        captureButton.setTitleColor(UIColor.greenColor(), forState: .Normal);
         captureButton.titleLabel?.font = UIFont(name:"Helvetica", size: 14.0)
         captureButton.addTarget(self, action: "capture:", forControlEvents: .TouchUpInside);
-        var captureButtonRect = CGRect(x: 5, y: self.frame.size.height/2, width: 64.0, height: 64.0);
+        var captureButtonRect = CGRect(x: 5, y: self.frame.size.height/4, width: 64.0, height: 64.0);
         captureButton.frame = captureButtonRect;
         captureButton.clipsToBounds = true;
         captureButton.layer.cornerRadius = 64.0/2.0;
-        captureButton.layer.borderColor = UIColor.orangeColor().CGColor;
-        captureButton.layer.borderWidth = 2.0;
+        captureButton.layer.borderColor = UIColor.greenColor().CGColor;
+        captureButton.layer.borderWidth = 3.0;
         self.addSubview(captureButton);
 
         // kick off scheduled timer to read rangefinder distance and display it on a label
@@ -258,7 +272,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
         distanceLabel.hidden = true;
         captureButton.hidden = true;
         var checkboxRect: CGRect;
-        var lblDistanceRect: CGRect;
+        //var lblDistanceRect: CGRect;
         
         // save distance
         switch currentDirection {
@@ -277,6 +291,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             imgView_North.image = checkmark;
             imgView_North.frame = checkboxRect;
             
+            /*
             lblDistanceRect = CGRect(  x: imgView_North.center.x - 25.0,
                 y: imgView_North.frame.origin.y - 16.0,
                 width: 50.0,
@@ -284,6 +299,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             lblDistance_North.frame = lblDistanceRect;
             lblDistance_North.text = cmToFeetInches(distanceToNorthWall);
             lblDistance_North.hidden = false;
+            */
         case .SOUTH:
             distanceToSouthWall = distance!;
             
@@ -297,13 +313,15 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             imgView_South.frame = checkboxRect;
             imgView_South.transform = CGAffineTransformMakeRotation(π);
             
-            lblDistanceRect = CGRect(  x: imgView_South.center.x - 25.0,
-                y: imgView_South.frame.origin.y - 16.0,
+            /*
+            lblDistanceRect = CGRect(  x: imgView_South.center.x,
+                y: imgView_South.frame.origin.y,
                 width: 50.0,
                 height: 12.0);
             lblDistance_South.frame = lblDistanceRect;
             lblDistance_South.text = cmToFeetInches(distanceToSouthWall);
             lblDistance_South.hidden = false;
+            */
         case .EAST:
             distanceToEastWall = distance!;
             
@@ -316,14 +334,17 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             imgView_East.image = checkmark;
             imgView_East.frame = checkboxRect;
             
-            lblDistanceRect = CGRect(  x: imgView_East.center.x - 25.0,
-                y: imgView_East.frame.origin.y - 16.0,
-                width: 50.0,
-                height: 12.0);
+            /*
+            lblDistanceRect = CGRect(  x: imgView_East.center.x - checkmark.size.height,
+                y: imgView_East.center.y - 25,
+                width: 12.0,
+                height: 50.0);
             lblDistance_East.frame = lblDistanceRect;
             lblDistance_East.text = cmToFeetInches(distanceToEastWall);
             lblDistance_East.hidden = false;
+            */
         case .WEST:
+            isFinishedMeasuring = true;
             distanceToWestWall = distance!;
             
             checkboxRect = CGRect(  x: 30,
@@ -335,6 +356,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             imgView_West.image = checkmark;
             imgView_West.frame = checkboxRect;
             
+            /*
             lblDistanceRect = CGRect(  x: imgView_West.center.x - 25.0,
                 y: imgView_West.frame.origin.y - 16.0,
                 width: 50.0,
@@ -342,9 +364,13 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             lblDistance_West.frame = lblDistanceRect;
             lblDistance_West.text = cmToFeetInches(distanceToWestWall);
             lblDistance_West.hidden = false;
-
+            */
             // update help text
             title.text = "Congratulations! You've measured this room.";
+            var width = cmToFeetInches(distanceToEastWall + distanceToWestWall + DISTANCE_BODY_OFFSET);
+            var height = cmToFeetInches(distanceToNorthWall + distanceToSouthWall + DISTANCE_BODY_OFFSET);
+            distanceLabel.text = String(format:"%@ x %@", width, height);
+            distanceLabel.hidden = false;
         }
         
         // start capturing user's rotation
@@ -361,8 +387,10 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
    
     // display distance in the label
     func displayDistance() {
-        self.distance = Int(self.rangefinder.distance);
-        self.distanceLabel.text = self.cmToFeetInches(self.distance!);
+        if (!isFinishedMeasuring) {
+            self.distance = Int(self.rangefinder.distance);
+            self.distanceLabel.text = self.cmToFeetInches(self.distance!);
+        }
     }
     
     func setInitialHeading() {
@@ -402,6 +430,8 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             // after rotating make the checkbox face the right direction again
             distanceLabel.transform = CGAffineTransformMakeRotation(π/2);
             imgView_North.transform = CGAffineTransformMakeRotation(π/2);
+            //lblDistance_North.transform = CGAffineTransformMakeRotation(π/2);
+            //lblDistance_North.center = CGPointMake(imgView_North.center.x - checkmark.size.width/2 - 10, imgView_North.center.y);
             imgView_East.hidden = false;
 
         case .EAST:
@@ -410,6 +440,8 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             distanceLabel.transform = CGAffineTransformMakeRotation(π);
             imgView_North.transform = CGAffineTransformMakeRotation(π);
             imgView_East.transform = CGAffineTransformMakeRotation(π);
+            //lblDistance_East.transform = CGAffineTransformMakeRotation(π);
+            //lblDistance_East.center = CGPointMake(imgView_East.center.x + checkmark.size.width/2, imgView_East.center.y + checkmark.size.height/2);
             imgView_South.hidden = false;
 
         case .SOUTH:
@@ -419,6 +451,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate {
             imgView_North.transform = CGAffineTransformMakeRotation(3*π/2);
             imgView_East.transform = CGAffineTransformMakeRotation(3*π/2);
             imgView_South.transform = CGAffineTransformMakeRotation(3*π/2);
+            //lblDistance_South.transform = CGAffineTransformMakeRotation(3*π/2);
             imgView_West.hidden = false;
             
         case .WEST:
@@ -451,7 +484,7 @@ extension CreateRoomView: CLLocationManagerDelegate {
             // Convert Degree to Radian and move the needle
             var oldRad =  -manager.heading.trueHeading * M_PI / 180.0;
             var newRad =  -newHeading.trueHeading * M_PI / 180.0;
-            //println(String(format:"oldRad: %.1f, newRad: %.1f", oldRad, newRad));
+            println(String(format:"newRad: %.1f", newRad));
             
             var theAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation");
             theAnimation.fromValue = oldRad - initialHeading;
@@ -465,26 +498,32 @@ extension CreateRoomView: CLLocationManagerDelegate {
             case .NORTH:
                 // stop rotating when newRad is within 0.1 radian of 90 degrees (π/2) from the initial direction
                 if (abs(newRad) > abs(initialHeading) + M_PI_4
-                    && abs(newRad) - abs(initialHeading) - M_PI_2 < 0.1
-                    && abs(newRad) - abs(initialHeading) - M_PI_2 > -0.1) {
+                    && abs(abs(newRad) - abs(initialHeading)) - M_PI_2 < 0.1
+                    && abs(abs(newRad) - abs(initialHeading)) - M_PI_2 > -0.1) {
                     
                         println("snap after north");
                         snapTo90Degrees(-M_PI_2);
                 }
             case .EAST:
-                if (abs(newRad) > abs(initialHeading) + 3.0 * M_PI_4
-                    && abs(newRad) - abs(initialHeading) - M_PI < 0.1
-                    && abs(newRad) - abs(initialHeading) - M_PI > -0.1) {
+                if (/*abs(newRad) > abs(initialHeading) + 3.0 * M_PI_4
+                    && */abs(abs(newRad) - abs(initialHeading)) - M_PI < 0.1
+                    && abs(abs(newRad) - abs(initialHeading)) - M_PI > -0.1) {
                     
                         println("snap after east");
                         snapTo90Degrees(-M_PI);
                 }
             case .SOUTH:
-                if (abs(newRad) > abs(initialHeading) + 5.0 * M_PI_4
-                    && abs(newRad) - abs(initialHeading) - (3.0 * M_PI_2) < 0.1
-                    && abs(newRad) - abs(initialHeading) - (3.0 * M_PI_2) > 0.0) {
+                /*abs(newRad) > abs(initialHeading) + 5.0 * M_PI_4 && */
+                if ( abs(abs(newRad) - abs(initialHeading)) - (3.0 * M_PI_2) < 0.1
+                    && abs(abs(newRad) - abs(initialHeading)) - (3.0 * M_PI_2) > -0.1) {
+                    
+                        println("snap after south -3pi/2");
+                        snapTo90Degrees(-3 * M_PI_2);
+                }
+                else if (abs(abs(newRad) - abs(initialHeading)) - M_PI_2 < 0.1
+                    && abs(abs(newRad) - abs(initialHeading)) - M_PI_2 > -0.1) {
                         
-                        println("snap after south");
+                        println("snap after south, -3 * pi/2");
                         snapTo90Degrees(-3 * M_PI_2);
                 }
             case .WEST:
