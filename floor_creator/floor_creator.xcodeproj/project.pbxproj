@@ -10,6 +10,8 @@
 		10210D6F19DDA4A0000C0295 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D6E19DDA4A0000C0295 /* ImageIO.framework */; };
 		10210D7119DDA4A6000C0295 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D7019DDA4A6000C0295 /* QuartzCore.framework */; };
 		10210D7319DDA4AC000C0295 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D7219DDA4AC000C0295 /* CoreMedia.framework */; };
+		1043716A19E5C5D900FC5C6D /* MeasureRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1043716819E5C5D900FC5C6D /* MeasureRoomViewController.swift */; };
+		1043716B19E5C5D900FC5C6D /* MeasureRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1043716919E5C5D900FC5C6D /* MeasureRoomViewController.xib */; };
 		1048740D19DDA4D50077061F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048740C19DDA4D50077061F /* CoreGraphics.framework */; };
 		1048740F19DDA4DB0077061F /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048740E19DDA4DB0077061F /* CoreImage.framework */; };
 		1048741119DDA4F50077061F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048741019DDA4F50077061F /* CoreVideo.framework */; };
@@ -42,6 +44,8 @@
 		10210D6E19DDA4A0000C0295 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		10210D7019DDA4A6000C0295 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		10210D7219DDA4AC000C0295 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1043716819E5C5D900FC5C6D /* MeasureRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasureRoomViewController.swift; path = ../MeasureRoomViewController.swift; sourceTree = "<group>"; };
+		1043716919E5C5D900FC5C6D /* MeasureRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeasureRoomViewController.xib; path = ../MeasureRoomViewController.xib; sourceTree = "<group>"; };
 		1048740C19DDA4D50077061F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1048740E19DDA4DB0077061F /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		1048741019DDA4F50077061F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -128,9 +132,11 @@
 			isa = PBXGroup;
 			children = (
 				104C4E4F19E2EE0C009146C2 /* Images.xcassets */,
+				1043716819E5C5D900FC5C6D /* MeasureRoomViewController.swift */,
+				1043716919E5C5D900FC5C6D /* MeasureRoomViewController.xib */,
 				10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */,
-				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
+				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
 				7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */,
 				7B87DD0719DC4A7B00DEAF73 /* Supporting Files */,
@@ -246,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1043716B19E5C5D900FC5C6D /* MeasureRoomViewController.xib in Resources */,
 				104C4E5019E2EE0C009146C2 /* Images.xcassets in Resources */,
 				7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */,
 				7B87DD1419DC4A7B00DEAF73 /* LaunchScreen.xib in Resources */,
@@ -267,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */,
+				1043716A19E5C5D900FC5C6D /* MeasureRoomViewController.swift in Sources */,
 				10EEA5F819DC97A7004D9A74 /* Rangefinder.m in Sources */,
 				7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */,
 				7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */,

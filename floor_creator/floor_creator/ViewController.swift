@@ -10,20 +10,35 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var measureButton: UIBarButtonItem!
+    //let ruler: UIImage = UIImage(named: "ruler").imageWithRenderingMode(.AlwaysOriginal);
+
+    var measureRoomView: MeasureRoomViewController!;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // init Create Room View
-        var rect = CGRect(x: 40.0, y: 40.0, width: self.view.frame.size.width/2-40, height: self.view.frame.size.height-80);
-        var createRoomView = CreateRoomView(frame: rect);
-        
-        self.view.addSubview(createRoomView);
+        // initialize the navigation controller
+        self.title = "Floor Plan";
+    
+        //measureButton = UIBarButtonItem(image: ruler, style: .Bordered, target: self, action: "measureRoom");
     } 
 
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    }
+    
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning();
     }
 
+    
+// MARK: - View Methods
+    
+    @IBAction func measureRoom(sender: UIBarButtonItem) {
+        let measureRoomVC = MeasureRoomViewController(nibName: "MeasureRoomViewController", bundle: nil);
+        navigationController?.pushViewController(measureRoomVC, animated: true);
+    }
 
 }
 
