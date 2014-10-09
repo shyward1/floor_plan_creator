@@ -19,10 +19,11 @@ class MeasureRoomViewController: UIViewController {
         super.viewDidLoad();
         
         navigationItem.title = "Measure New Room";
+        self.view.layer.borderWidth = 0.0;
         
         // init Create Room View and Level View
-        createRoomView = CreateRoomView(frame: CGRect(x: 50, y: 0, width: self.view.frame.size.width * 0.75 - 50, height: self.view.frame.size.height));
-        levelView = LevelView(frame: CGRect(x: 50, y: self.view.frame.size.width * 0.25, width: self.view.frame.size.width * 0.25 - 50, height: self.view.frame.size.height));
+        createRoomView = CreateRoomView(frame: CGRect(x: 0.0, y: 65.0, width: self.view.frame.size.width * 0.75, height: self.view.frame.size.height-65.0));
+        levelView = LevelView(frame: CGRect(x: self.view.frame.size.width * 0.75, y: 65.0, width: self.view.frame.size.width * 0.25, height: self.view.frame.size.height-65.0));
         
         self.view.addSubview(createRoomView);
         self.view.addSubview(levelView);
@@ -33,6 +34,7 @@ class MeasureRoomViewController: UIViewController {
         super.didReceiveMemoryWarning()
         
         createRoomView.cleanUp();
+        levelView.cleanUp();
         createRoomView = nil;
     }
     

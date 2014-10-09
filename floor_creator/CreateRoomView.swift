@@ -123,26 +123,19 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         // set border and background color
         self.backgroundColor = UIColor.whiteColor();
         
-        var labelRect = CGRect(x: frame.size.height*4/3/2 - 150, y: 75, width: 300.0, height: 20.0);
-        title.frame = labelRect;
+        title.frame = CGRect(x: self.frame.size.width*2/3-150.0, y: 70.0, width: 300.0, height: 20.0);
         title.textAlignment = NSTextAlignment.Center;
         title.textColor = colorThemeBlue;
-        //title.text = HELP_TEXT_POINT;
         self.addSubview(title);
         
         // floating canvas
-        var canvasRect = CGRect(x: frame.size.height*4/3/2 - 150,
-                                y: frame.size.width/2,
-                            width: 300.0,
-                           height: 300.0);
-        floatingCanvas.frame = canvasRect;
+        floatingCanvas.frame = CGRect(x: self.frame.size.width*2/3-150, y: frame.size.height/2-150, width: 300.0, height: 300.0);
         floatingCanvas.backgroundColor = UIColor.whiteColor();
         floatingCanvas.layer.borderWidth = 2.0;
         floatingCanvas.layer.borderColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [0.1, 0.1, 0.1, 0.1]);
         self.addSubview(floatingCanvas);
         
-        labelRect = CGRect(x: 0.0, y: floatingCanvas.frame.size.height/2-25, width: floatingCanvas.frame.size.width, height: 50.0);
-        distanceLabel.frame = labelRect;
+        distanceLabel.frame = CGRect(x: 0.0, y: floatingCanvas.frame.size.height/2-25.0, width: floatingCanvas.frame.size.width, height: 50.0);
         distanceLabel.textAlignment = NSTextAlignment.Center;
         distanceLabel.textColor = UIColor.blackColor();
         distanceLabel.font = UIFont(name:"Helvetica", size: 20.0);
@@ -155,12 +148,10 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         rotateImgView = UIImageView();
         rotateImgView.image = rotate;
         
-        // center image in iPad landscape mode (remember, this view is only 3/4 of the screen)
-        var rotateRect = CGRect(    x:  frame.size.height*4/3/2 - rotate.size.width/2,
-                                    y: frame.size.width/2,
-                                width: rotate.size.width,
-                               height: rotate.size.height);
-        rotateImgView.frame = rotateRect;
+        // center image in iPad landscape mode
+        rotateImgView.frame = CGRect(x: self.frame.size.width*2/3-rotate.size.width/2, y: frame.size.height/2-rotate.size.height,
+            width: rotate.size.width,
+            height: rotate.size.height);
         // set initial alpha to 0 (translucent)
         rotateImgView.alpha = 0.0;
         self.addSubview(rotateImgView);
@@ -222,8 +213,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         captureButton.setTitleColor(colorThemeBlue, forState: .Normal);
         captureButton.titleLabel?.font = UIFont(name:"Helvetica", size: 16.0)
         captureButton.addTarget(self, action: "capture:", forControlEvents: .TouchUpInside);
-        var captureButtonRect = CGRect(x: 30, y: self.frame.size.height/2, width: 80.0, height: 80.0);
-        captureButton.frame = captureButtonRect;
+        captureButton.frame = CGRect(x: 30, y: self.frame.size.height/2-66.0, width: 80.0, height: 80.0);
         captureButton.clipsToBounds = true;
         captureButton.layer.cornerRadius = 40.0;
         captureButton.layer.borderColor = colorThemeBlue.CGColor;

@@ -20,6 +20,11 @@ class ViewController: UIViewController {
         
         // initialize the navigation controller
         self.title = "Floor Plan";
+        
+        print("width: ");
+        println("\(self.view.frame.size.width)");
+        print("height: ");
+        println("\(self.view.frame.size.height)");
     
         //measureButton = UIBarButtonItem(image: ruler, style: .Bordered, target: self, action: "measureRoom");
     } 
@@ -36,7 +41,7 @@ class ViewController: UIViewController {
 // MARK: - View Methods
     
     @IBAction func measureRoom(sender: UIBarButtonItem) {
-        let measureRoomVC = MeasureRoomViewController(nibName: "MeasureRoomViewController", bundle: nil);
+        let measureRoomVC = MeasureRoomViewController(nibName: nil, bundle: nil);
         navigationController?.pushViewController(measureRoomVC, animated: true);
     }
 
