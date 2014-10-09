@@ -12,8 +12,21 @@ import Foundation
 // implements Singleton design pattern
 class FloorPlanDAO {
     
-    // an array of Room objects
-    var rooms: [Room] = [];
+    private init() { }
+    
+    enum FloorPlanLevel {
+        case Basement
+        case First
+        case Second
+        case Third
+        case Fourth
+        case Fifth
+        case Garden
+        case Attic
+    }
+    
+    // a dictionary of Floors holding an array of rooms
+    var floorplan = Dictionary<FloorPlanLevel, [Room]>();
     
     // call FloorPlanDAO.sharedInstance to get a handle to this class
     class var sharedInstance: FloorPlanDAO {
@@ -30,18 +43,37 @@ class FloorPlanDAO {
         return Static.instance!
     }
     
-    
-    // adds a room to this floor plan
-    func addRoom(aRoom: Room) {
-        rooms.append(aRoom);
+    // adds a room to the floor for this floor plan
+    func addRoom(aRoom: Room, level: FloorPlanLevel) {
+        
+        var roomsOnLevel = floorplan[level];
+        
+        if (roomsOnLevel == nil) {
+            let a: [Room] = [aRoom];
+            floorplan[level] = a;
+        }
+        else {
+            roomsOnLevel?.append(aRoom);
+        }
     }
     
-    func numberRooms() -> Int {
-        return rooms.count;
+    func countRooms(level: FloorPlanLevel) -> Int {
+        var count = 0;
+        
+        if let roomsOnLevel = floorplan[level] {
+            count = roomsOnLevel.count;
+        }
+        return count;
+    }
+    
+    // returns the total number of rooms on all levels of this floor plan
+    func countRooms() -> Int {
+        ///TODO: count all floors
+        return 0;
     }
     
     func clearRooms() {
-        rooms.removeAll(keepCapacity: false);
+        //rooms.removeAll(keepCapacity: false);
     }
     
 }
