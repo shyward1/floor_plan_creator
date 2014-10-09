@@ -251,19 +251,15 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         super.init(coder: aDecoder);
     }
 
+    func cleanUp() {
+        isRotating = false;
+        isFinishedMeasuring = true;
+        
+        rangefinder = nil;
+        locationManager?.stopUpdatingHeading();
+    }
     
 // MARK: - View Methods
-
-    // called when back button is clicked on the navigation controller. Clean up resources
-    override func willMoveToSuperview(newSuperview: UIView?) {
-        if (newSuperview == nil) {
-            isRotating = false;
-            isFinishedMeasuring = true;
-
-            rangefinder = nil;
-            locationManager?.stopUpdatingHeading();
-        }
-    }
     
     // grows and shrinks the capture button to make it more obvious to the user
     func captureButtonAnimation() {

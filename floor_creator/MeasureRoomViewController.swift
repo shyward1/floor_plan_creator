@@ -12,6 +12,7 @@ class MeasureRoomViewController: UIViewController {
 
     // UIView for measuring a room
     var createRoomView: CreateRoomView!
+    var levelView: LevelView!
     
     
     override func viewDidLoad() {
@@ -19,19 +20,27 @@ class MeasureRoomViewController: UIViewController {
         
         navigationItem.title = "Measure New Room";
         
-        // init Create Room View
-        var rect = CGRect(x: 50, y: 0, width: self.view.frame.size.width * 0.75 - 50, height: self.view.frame.size.height);
-        createRoomView = CreateRoomView(frame: rect);
+        // init Create Room View and Level View
+        createRoomView = CreateRoomView(frame: CGRect(x: 50, y: 0, width: self.view.frame.size.width * 0.75 - 50, height: self.view.frame.size.height));
+        levelView = LevelView(frame: CGRect(x: 50, y: self.view.frame.size.width * 0.25, width: self.view.frame.size.width * 0.25 - 50, height: self.view.frame.size.height));
+        
         self.view.addSubview(createRoomView);
+        self.view.addSubview(levelView);
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+        createRoomView.cleanUp();
         createRoomView = nil;
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        createRoomView.cleanUp();
+        levelView.cleanUp();
+    }
+
 
     /*
     // MARK: - Navigation
