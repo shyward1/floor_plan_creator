@@ -231,14 +231,17 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         self.addSubview(captureButton);
 
         // textbox for inputting the room name
+        /*
         var txtfieldRect = CGRect(x: self.frame.size.width/2, y: 40, width: 300, height: 25.0);
         txtRoomName = UITextField(frame: txtfieldRect);
         txtRoomName.text = roomName;
         txtRoomName.delegate = self;
         txtRoomName.borderStyle = UITextBorderStyle.None;
         //self.addSubview(txtRoomName);
-        
+        */
+
         // kick off scheduled timer to read rangefinder distance and display it on a label
+        isFinishedMeasuring = false;
         timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "displayDistance", userInfo: nil, repeats: true);
         
         var captureButtonAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "captureButtonAnimation", userInfo: nil, repeats: true);
@@ -251,6 +254,17 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     
 // MARK: - View Methods
 
+    // called when back button is clicked on the navigation controller. Clean up resources
+    override func willMoveToSuperview(newSuperview: UIView?) {
+        if (newSuperview == nil) {
+            isRotating = false;
+            isFinishedMeasuring = true;
+
+            rangefinder = nil;
+            locationManager?.stopUpdatingHeading();
+        }
+    }
+    
     // grows and shrinks the capture button to make it more obvious to the user
     func captureButtonAnimation() {
         if (captureButton.frame.size.width == 80) {
