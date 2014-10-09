@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1002DDA019E701A5003E01C4 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002DD9F19E701A5003E01C4 /* Room.swift */; };
 		1002DDA219E72220003E01C4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002DDA119E72220003E01C4 /* Util.swift */; };
+		1002DDA419E73120003E01C4 /* FloorPlanDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1002DDA319E73120003E01C4 /* FloorPlanDAO.swift */; };
 		10210D6F19DDA4A0000C0295 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D6E19DDA4A0000C0295 /* ImageIO.framework */; };
 		10210D7119DDA4A6000C0295 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D7019DDA4A6000C0295 /* QuartzCore.framework */; };
 		10210D7319DDA4AC000C0295 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10210D7219DDA4AC000C0295 /* CoreMedia.framework */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		1002DD9F19E701A5003E01C4 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		1002DDA119E72220003E01C4 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		1002DDA319E73120003E01C4 /* FloorPlanDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorPlanDAO.swift; sourceTree = "<group>"; };
 		10210D6E19DDA4A0000C0295 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		10210D7019DDA4A6000C0295 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		10210D7219DDA4AC000C0295 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -146,6 +148,7 @@
 				1043716919E5C5D900FC5C6D /* MeasureRoomViewController.xib */,
 				107E7AD719E6DF3300BC0644 /* LevelView.swift */,
 				10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */,
+				1002DDA319E73120003E01C4 /* FloorPlanDAO.swift */,
 				1002DD9F19E701A5003E01C4 /* Room.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1002DDA419E73120003E01C4 /* FloorPlanDAO.swift in Sources */,
 				10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */,
 				107E7AD819E6DF3300BC0644 /* LevelView.swift in Sources */,
 				1002DDA019E701A5003E01C4 /* Room.swift in Sources */,

@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var measureButton: UIBarButtonItem!
-    //let ruler: UIImage = UIImage(named: "ruler").imageWithRenderingMode(.AlwaysOriginal);
 
+    // View Controller that handles measuring a room
     var measureRoomView: MeasureRoomViewController!;
     
     override func viewDidLoad() {
@@ -20,13 +20,6 @@ class ViewController: UIViewController {
         
         // initialize the navigation controller
         self.title = "Floor Plan";
-        
-        print("width: ");
-        println("\(self.view.frame.size.width)");
-        print("height: ");
-        println("\(self.view.frame.size.height)");
-    
-        //measureButton = UIBarButtonItem(image: ruler, style: .Bordered, target: self, action: "measureRoom");
     } 
 
     required init(coder aDecoder: NSCoder) {

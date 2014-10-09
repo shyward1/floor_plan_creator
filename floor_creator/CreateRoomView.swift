@@ -245,6 +245,23 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         locationManager?.stopUpdatingHeading();
     }
     
+    // creates a room object and saves it with the parent
+    func saveRoom() {
+        var width = CGFloat(distanceToEastWall + distanceToWestWall + DISTANCE_BODY_OFFSET);
+        var depth = CGFloat(distanceToNorthWall + distanceToSouthWall + DISTANCE_BODY_OFFSET);
+        
+        var room: Room = Room(width: width, depth: depth, name: txtRoomName.text);
+        
+        FloorPlanDAO.sharedInstance.addRoom(room);
+        numRoomsLabel.text = String(FloorPlanDAO.sharedInstance.numberRooms());
+        
+        // get ready to measure the next room
+        distanceToNorthWall = 0;
+        distanceToSouthWall = 0;
+        distanceToEastWall  = 0;
+        distanceToWestWall  = 0;
+    }
+    
 // MARK: - View Methods
     
     // grows and shrinks the capture button to make it more obvious to the user
@@ -342,6 +359,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
             isFinishedMeasuring = true;
             isRotating = false;
             distanceToWestWall = distance!;
+            saveRoom();
             
             checkboxRect = CGRect(  x: 30,
                                     y: floatingCanvas.frame.size.height/2 - checkmark.size.height/2,
@@ -358,7 +376,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
                 self.imgView_West.alpha = 1.0;
                 }) { (Bool) -> Void in
             }
-
 
             // update help text
             //title.text = "Congratulations! You've measured this room.";

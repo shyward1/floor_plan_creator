@@ -34,17 +34,21 @@ class Room: UIView {
     
     var lblRoomName: UILabel!
     
+    convenience init(width: CGFloat, depth: CGFloat, name: String) {
+        self.init(x: 0.0, y: 0.0, width: width, depth: depth, name: name);
+    }
+    
     // constructor
-    init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, name: String) {
+    init(x: CGFloat, y: CGFloat, width: CGFloat, depth: CGFloat, name: String) {
         super.init();
         
         _roomName = name;
         _roomWidth = width;
-        _roomHeight = height;
-        _roomDepth = STANDARD_WALL_HEIGHT;
+        _roomHeight = STANDARD_WALL_HEIGHT;
+        _roomDepth = depth;
         
         // draw the outer walls
-        self.frame = CGRectMake(x, y, width, height);
+        self.frame = CGRectMake(x, y, width, depth);
         self.layer.borderWidth = 1.0;
         self.layer.borderColor = roomWallColor.CGColor;
         self.layer.backgroundColor = roomFillColor.CGColor;
