@@ -28,7 +28,7 @@ class LevelView: UIView {
 
         // initialize levelDrawingView
         levelDrawingView.frame = CGRect(x: self.frame.size.width/2-80.0, y: self.frame.size.height/2-40.0-66.0, width: 80.0, height: 160.0);
-        levelDrawingView.backgroundColor = UIColor.whiteColor();
+        levelDrawingView.layer.backgroundColor = UIColor.whiteColor().CGColor;
         levelDrawingView.layer.borderWidth = 2.0;
         levelDrawingView.layer.borderColor = UIColor.blackColor().CGColor;
         self.addSubview(levelDrawingView);
