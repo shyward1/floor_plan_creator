@@ -10,7 +10,7 @@
 
 import UIKit
 
-class Room: UIView {
+public class Room: UIView {
     // 92' 5/8"
     let STANDARD_WALL_HEIGHT: CGFloat = 235.268;
     
@@ -34,7 +34,7 @@ class Room: UIView {
     
     var lblRoomName: UILabel!
     
-    convenience init(width: CGFloat, depth: CGFloat, name: String) {
+    convenience public init(width: CGFloat, depth: CGFloat, name: String) {
         self.init(x: 0.0, y: 0.0, width: width, depth: depth, name: name);
     }
     
@@ -53,9 +53,6 @@ class Room: UIView {
         self.layer.borderColor = roomWallColor.CGColor;
         self.layer.backgroundColor = roomFillColor.CGColor;
         
-        // draw the inner walls inset from the outer walls
-        drawWalls();
-        
         // add the room name label
         lblRoomName = UILabel();
         lblRoomName.frame = CGRect(x: x, y: y, width: width, height: 20.0);
@@ -64,33 +61,28 @@ class Room: UIView {
         self.addSubview(lblRoomName);
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame);
+    }
     
     // MARK: - View Methods
     
-    func drawWalls() {
+    // Only override drawRect: if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    public override func drawRect(rect: CGRect) {
         var pxWallDepth: CGFloat = Util.centimetersToPixels(STANDARD_WALL_DEPTH);
         var innerWalls: CGRect = CGRect(x: self.frame.origin.x + pxWallDepth, y: self.frame.origin.y + pxWallDepth, width: self.frame.size.width - 2*pxWallDepth, height: self.frame.size.height - 2*pxWallDepth);
-        
-        
+    
+    
         var context: CGContextRef = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(context, roomWallColor.CGColor);
         CGContextSetLineWidth(context, 1.0);
         CGContextStrokeRect(context, innerWalls);
-
     }
 
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect)
-    {
-        // Drawing code
-    }
-    */
 
 }

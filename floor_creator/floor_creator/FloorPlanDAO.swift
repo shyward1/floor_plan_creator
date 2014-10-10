@@ -8,28 +8,40 @@
 
 import Foundation
 
+/*
+// for some odd reason this isn't working when called from floor_creatorTests
+ public enum FloorLevel {
+    case Basement
+    case First
+    case Second
+    case Third
+    case Fourth
+    case Fifth
+    case Garden
+    case Attic
+}
+*/
+
+public let FLOOR_BASEMENT: Int = -1;
+public let FLOOR_GARDEN: Int = 0;
+public let FLOOR_FIRST: Int = 1;
+public let FLOOR_SECOND: Int = 2;
+public let FLOOR_THIRD: Int = 3;
+public let FLOOR_FOURTH: Int = 4;
+public let FLOOR_FIFTH: Int = 5;
+public let FLOOR_ATTIC: Int = 9;
+
 
 // implements Singleton design pattern
-class FloorPlanDAO {
+public class FloorPlanDAO {
     
-    private init() { }
-    
-    enum FloorPlanLevel {
-        case Basement
-        case First
-        case Second
-        case Third
-        case Fourth
-        case Fifth
-        case Garden
-        case Attic
-    }
+    private init() { }    
     
     // a dictionary of Floors holding an array of rooms
-    var floorplan = Dictionary<FloorPlanLevel, [Room]>();
+    var floorplan = Dictionary<Int, [Room]>();
     
     // call FloorPlanDAO.sharedInstance to get a handle to this class
-    class var sharedInstance: FloorPlanDAO {
+    public class var sharedInstance: FloorPlanDAO {
         
     struct Static {
         static var instance: FloorPlanDAO?
@@ -44,8 +56,7 @@ class FloorPlanDAO {
     }
     
     // adds a room to the floor for this floor plan
-    func addRoom(aRoom: Room, level: FloorPlanLevel) {
-        
+    public func addRoom(aRoom: Room, level: Int) {
         var roomsOnLevel = floorplan[level];
         
         if (roomsOnLevel == nil) {
@@ -54,10 +65,11 @@ class FloorPlanDAO {
         }
         else {
             roomsOnLevel?.append(aRoom);
+            floorplan[level] = roomsOnLevel;
         }
     }
     
-    func countRooms(level: FloorPlanLevel) -> Int {
+    public func countRooms(level: Int) -> Int {
         var count = 0;
         
         if let roomsOnLevel = floorplan[level] {
@@ -67,13 +79,18 @@ class FloorPlanDAO {
     }
     
     // returns the total number of rooms on all levels of this floor plan
-    func countRooms() -> Int {
-        ///TODO: count all floors
-        return 0;
+    public func countRooms() -> Int {
+        var count: Int = 0;
+        
+        for (level, rooms) in floorplan {
+            count += rooms.count;
+        }
+        
+        return count;
     }
     
-    func clearRooms() {
-        //rooms.removeAll(keepCapacity: false);
+    public func clearRooms() {
+        floorplan.removeAll(keepCapacity: false);
     }
     
 }

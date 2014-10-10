@@ -250,9 +250,9 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         var width = CGFloat(distanceToEastWall + distanceToWestWall + DISTANCE_BODY_OFFSET);
         var depth = CGFloat(distanceToNorthWall + distanceToSouthWall + DISTANCE_BODY_OFFSET);
         
-        var room: Room = Room(width: width, depth: depth, name: txtRoomName.text);
+        var room: Room = Room(width: width, depth: depth, name: roomName);
         
-        FloorPlanDAO.sharedInstance.addRoom(room, level: .First);
+        FloorPlanDAO.sharedInstance.addRoom(room, level: 1);
         numRoomsLabel.text = String(FloorPlanDAO.sharedInstance.countRooms());
         
         // get ready to measure the next room
