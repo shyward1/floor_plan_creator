@@ -10,8 +10,8 @@ import Foundation
 
 
 ///TODO: interrogate iPad to determine screen density and adjust as appropriate
-// measurement scale 1' = 30.48 cm = 5 pixels. 1 pixel = 6.096 cm
-let SCALE: CGFloat = 6.096;
+// measurement scale 1' = 30.48 cm = 10 pixels. 1 pixel = 3.048 cm
+let SCALE: CGFloat = 3.048;
 
 class Util {
     

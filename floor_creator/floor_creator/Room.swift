@@ -48,16 +48,21 @@ public class Room: UIView {
         _roomDepth = depth;
         
         // draw the outer walls
-        self.frame = CGRectMake(x, y, width, depth);
-        self.layer.borderWidth = 1.0;
-        self.layer.borderColor = roomWallColor.CGColor;
-        self.layer.backgroundColor = roomFillColor.CGColor;
+        let pxWallDepth: CGFloat = 3.0;
+        self.frame = CGRectMake(x, y, Util.centimetersToPixels(width) + 2 * pxWallDepth, Util.centimetersToPixels(depth) + 2 * pxWallDepth);
+        self.backgroundColor = UIColor.whiteColor();
+        self.layer.borderWidth = 0.0;
+        self.layer.borderColor = UIColor.whiteColor().CGColor;
+        self.layer.backgroundColor = UIColor.whiteColor().CGColor;
+        //self.layer.borderColor = roomWallColor.CGColor;
+        //self.layer.backgroundColor = roomFillColor.CGColor;
         
         // add the room name label
         lblRoomName = UILabel();
-        lblRoomName.frame = CGRect(x: x, y: y, width: width, height: 20.0);
+        lblRoomName.frame = CGRect(x: 0.0, y: self.frame.size.height/2-10.0, width: frame.size.width, height: 20.0);
         lblRoomName.textAlignment = .Center;
         lblRoomName.textColor = UIColor.blackColor();
+        lblRoomName.text = _roomName;
         self.addSubview(lblRoomName);
     }
     
@@ -74,14 +79,17 @@ public class Room: UIView {
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     public override func drawRect(rect: CGRect) {
-        var pxWallDepth: CGFloat = Util.centimetersToPixels(STANDARD_WALL_DEPTH);
-        var innerWalls: CGRect = CGRect(x: self.frame.origin.x + pxWallDepth, y: self.frame.origin.y + pxWallDepth, width: self.frame.size.width - 2*pxWallDepth, height: self.frame.size.height - 2*pxWallDepth);
-    
-    
+        //var pxWallDepth: CGFloat = Util.centimetersToPixels(STANDARD_WALL_DEPTH);
+        let pxWallDepth: CGFloat = 3.0;
+        
+        let outerWalls: CGRect = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height);
+        let innerWalls: CGRect = CGRect(x: pxWallDepth, y: pxWallDepth, width: self.frame.size.width - 2 * pxWallDepth, height: self.frame.size.height - 2 * pxWallDepth);
+        
         var context: CGContextRef = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(context, roomWallColor.CGColor);
-        CGContextSetLineWidth(context, 1.0);
+        CGContextSetLineWidth(context, 0.5);
         CGContextStrokeRect(context, innerWalls);
+        CGContextStrokeRect(context, outerWalls);
     }
 
 

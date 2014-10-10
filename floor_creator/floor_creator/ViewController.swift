@@ -20,6 +20,14 @@ class ViewController: UIViewController {
         
         // initialize the navigation controller
         self.title = "Floor Plan";
+        
+        
+        
+        /// DEBUG
+        var room: Room = Room(x: 400.0, y: 400.0, width: CGFloat(365.76), depth: CGFloat(243.84), name: "Bedroom");
+        self.view.addSubview(room);
+        
+        /// end DEBUG
     } 
 
     required init(coder aDecoder: NSCoder) {
