@@ -79,6 +79,7 @@ class MeasureRoomViewController: UIViewController {
         
         // init Create Room View and Level View
         createRoomView = CreateRoomView(frame: CGRect(x: 0.0, y: 65.0, width: self.view.frame.size.width * 0.75, height: self.view.frame.size.height-65.0));
+        createRoomView.parent = self;
         levelView = LevelView(frame: CGRect(x: self.view.frame.size.width * 0.75, y: 65.0, width: self.view.frame.size.width * 0.25, height: self.view.frame.size.height-65.0));
         
         // hide the create room view and level view until the user is in the first room
@@ -102,7 +103,7 @@ class MeasureRoomViewController: UIViewController {
         lblHelpText.textAlignment = NSTextAlignment.Center;
         lblHelpText.textColor = UIColor.grayColor();
         lblHelpText.font = UIFont(name:"Helvetica", size: 20.0);
-        lblHelpText.text = "Move to the room you would like to measure";
+        lblHelpText.text = "Move to a Room to begin Measuring";
         lblHelpText.alpha = 0.0;
         self.view.addSubview(lblHelpText);
         
@@ -112,7 +113,7 @@ class MeasureRoomViewController: UIViewController {
         readyButton.setTitleColor(colorThemeBlue, forState: .Normal);
         readyButton.titleLabel?.font = UIFont(name:"Helvetica", size: 16.0)
         readyButton.addTarget(self, action: "readyButtonClicked:", forControlEvents: .TouchUpInside);
-        readyButton.frame = CGRect(x: 30, y: self.view.frame.size.height/2-66.0, width: 80.0, height: 80.0);
+        readyButton.frame = CGRect(x: 30, y: self.view.frame.size.height/2-1.0, width: 80.0, height: 80.0);
         readyButton.clipsToBounds = true;
         readyButton.layer.cornerRadius = 40.0;
         readyButton.layer.borderColor = colorThemeBlue.CGColor;
@@ -138,6 +139,15 @@ class MeasureRoomViewController: UIViewController {
 
     
     // MARK: - View Methods
+    
+    // called by CreateRoomView UIView after a room has finished measuring
+    func didFinishMeasuringRoom() {
+        levelView.running = false;
+        createRoomView.hidden = true;
+        levelView.hidden = true;
+        
+        displayPrepareToMeasureInstructions();
+    }
     
     func displayPrepareToMeasureInstructions() {
         
@@ -177,6 +187,8 @@ class MeasureRoomViewController: UIViewController {
         levelView.running = true;
         self.view.addSubview(createRoomView);
         self.view.addSubview(levelView);
+        
+        createRoomView.newRoom();
     }
 
     /*

@@ -62,7 +62,8 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     var txtRoomName: UITextField!
 
     var rangefinder: Rangefinder!
-
+    var parent: MeasureRoomViewController!
+    
     var timer: NSTimer!
     
     // keeps track of which wall is being measured
@@ -98,13 +99,13 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     
     var isFinishedMeasuring: Bool = false;
     
+    
+    // constructor
     override init(frame: CGRect) {
         super.init(frame: frame);
         
         // instantiate Rangefinder and start video capture
         rangefinder = Rangefinder();
-        
-        currentDirection = .NORTH;
         
         // initialize CLLocationManager and heading
         currentHeading = CLHeading();
@@ -116,7 +117,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         locationManager!.pausesLocationUpdatesAutomatically = false
         locationManager!.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager!.headingFilter = 1;
-        locationManager!.startUpdatingHeading();
         
         // set border and background color
         self.backgroundColor = UIColor.whiteColor();
@@ -163,7 +163,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         numRoomsLabel.textAlignment = NSTextAlignment.Center;
         numRoomsLabel.textColor = colorThemeBlue;
         numRoomsLabel.font = UIFont(name:"Helvetica", size: 20.0);
-        numRoomsLabel.text = "";
+        numRoomsLabel.text = String(FloorPlanDAO.sharedInstance.countRooms());
         self.addSubview(numRoomsLabel);
 
         imgView_North = UIImageView();
@@ -225,12 +225,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         txtRoomName.borderStyle = UITextBorderStyle.None;
         //self.addSubview(txtRoomName);
         */
-
-        // kick off scheduled timer to read rangefinder distance and display it on a label
-        isFinishedMeasuring = false;
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "displayDistance", userInfo: nil, repeats: true);
-        
-        var captureButtonAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "captureButtonAnimation", userInfo: nil, repeats: true);
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -241,8 +235,25 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         isRotating = false;
         isFinishedMeasuring = true;
         
-        rangefinder = nil;
         locationManager?.stopUpdatingHeading();
+    }
+    
+    // called by parent
+    func newRoom() {
+        distanceToNorthWall = 0;
+        distanceToSouthWall = 0;
+        distanceToEastWall  = 0;
+        distanceToWestWall  = 0;
+        
+        currentDirection = .NORTH;
+        
+        isFinishedMeasuring = false;
+        locationManager!.startUpdatingHeading();
+        
+        // kick off scheduled timer to read rangefinder distance and display it on a label
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "displayDistance", userInfo: nil, repeats: true);
+        
+        var captureButtonAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "captureButtonAnimation", userInfo: nil, repeats: true);
     }
     
     // creates a room object and saves it with the parent
@@ -254,12 +265,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         
         FloorPlanDAO.sharedInstance.addRoom(room, level: 1);
         numRoomsLabel.text = String(FloorPlanDAO.sharedInstance.countRooms());
-        
-        // get ready to measure the next room
-        distanceToNorthWall = 0;
-        distanceToSouthWall = 0;
-        distanceToEastWall  = 0;
-        distanceToWestWall  = 0;
     }
     
 // MARK: - View Methods
@@ -359,7 +364,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
             isFinishedMeasuring = true;
             isRotating = false;
             distanceToWestWall = distance!;
-            saveRoom();
             
             checkboxRect = CGRect(  x: 30,
                                     y: floatingCanvas.frame.size.height/2 - checkmark.size.height/2,
@@ -370,40 +374,41 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
             imgView_West.alpha = 0.0;
             imgView_West.image = checkmark;
             imgView_West.frame = checkboxRect;
-            
-            // fade checkmark image in
-            UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                self.imgView_West.alpha = 1.0;
-                }) { (Bool) -> Void in
-            }
 
-            // update help text
-            //title.text = "Congratulations! You've measured this room.";
             var width = cmToFeetInches(distanceToEastWall + distanceToWestWall + DISTANCE_BODY_OFFSET);
             var height = cmToFeetInches(distanceToNorthWall + distanceToSouthWall + DISTANCE_BODY_OFFSET);
-            distanceLabel.text = String(format:"%@ x %@", width, height);
-            distanceLabel.alpha = 0.0;
-            distanceLabel.hidden = false;
             
-            // fade room size label in
-            UIView.animateWithDuration(2.0, delay: 0.25, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                self.distanceLabel.alpha = 1.0;
+            // fade title out with individual measurement distance text and fade in room dimensions text
+            UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                self.title.alpha = 0.0;
+                }) { (Bool) -> Void in
+                    self.title.text = String(format:"%@ x %@", width, height);
+            }
+            
+            // fade checkmark image and room dimensions title in
+            UIView.animateWithDuration(0.5, delay: 1.5, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+                self.imgView_West.alpha = 1.0;
+                self.title.alpha = 1.0;
                 }) { (Bool) -> Void in
             }
+            
+            // add this Room object to the array of rooms for this floor and floor plan
+            saveRoom();
+            
+            // notify parent that a room has completed measuring
+            let notifyParentTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "didFinishMeasuringRoom", userInfo: nil, repeats: false);
         }
         
         // start capturing user's rotation
         if (currentDirection != .WEST) {
-            let rotateTimer = NSTimer.scheduledTimerWithTimeInterval(3.5, target: self, selector: "startRotating", userInfo: nil, repeats: false);
+            let rotateTimer = NSTimer.scheduledTimerWithTimeInterval(2.5, target: self, selector: "startRotating", userInfo: nil, repeats: false);
         }
     }
-    
-    /*
-    override func drawRect(rect: CGRect) {
-    
-    }
-    */
    
+    func didFinishMeasuringRoom() {
+        parent!.didFinishMeasuringRoom();
+    }
+    
     // display distance in the label
     func displayDistance() {
         if (!isFinishedMeasuring) {
