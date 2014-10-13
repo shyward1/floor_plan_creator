@@ -16,14 +16,23 @@ class LevelView: UIView {
     var levelDrawingView: UIView = UIView();
     var lblLevel: UILabel = UILabel();
     
+    var running: Bool = false {
+        didSet {
+            if running {
+                startMotionUpdates();
+            }
+            else if !running {
+                stopMotionUpdates();
+            }
+        }
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame);
         
         motionManager.deviceMotionUpdateInterval = 0.05;
-        motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.currentQueue(),
-            withHandler: motionUpdated);
-        
+
         self.backgroundColor = UIColor.whiteColor();
 
         // initialize levelDrawingView
@@ -45,21 +54,20 @@ class LevelView: UIView {
     }
     
     func cleanUp() {
-        motionManager.stopDeviceMotionUpdates();
+        stopMotionUpdates();
     }
    
     
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect)
-    {
-        // Drawing code
-    }
-    */
-
-    
     // MARK: - Core Motion Methods
+    
+    private func startMotionUpdates() {
+        motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.currentQueue(),
+            withHandler: motionUpdated);
+    }
+    
+    private func stopMotionUpdates() {
+        motionManager.stopDeviceMotionUpdates();
+    }
     
     func motionUpdated(motion: CMDeviceMotion!, error: NSError!) {
         if (error != nil) {

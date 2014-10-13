@@ -8,6 +8,7 @@
 //  Copyright (c) 2014 Shy Ward. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 public class Room: UIView {
@@ -29,6 +30,8 @@ public class Room: UIView {
     // height of the room in cm (z axis)
     var _roomHeight: CGFloat = 0.0;
     
+    //var panGestureRec: UIPanGestureRecognizer!
+    
     var roomFillColor: UIColor = UIColor.lightGrayColor();
     var roomWallColor: UIColor = UIColor.darkGrayColor();
     
@@ -41,6 +44,11 @@ public class Room: UIView {
     // constructor
     init(x: CGFloat, y: CGFloat, width: CGFloat, depth: CGFloat, name: String) {
         super.init();
+        
+        // allow UIPanGestureRecognizer to touch this UIView
+        //panGestureRec = UIPanGestureRecognizer(target: self, action: "handleTouches:");
+        self.userInteractionEnabled = true;
+        //self.addGestureRecognizer(panGestureRec);
         
         _roomName = name;
         _roomWidth = width;
@@ -91,6 +99,5 @@ public class Room: UIView {
         CGContextStrokeRect(context, innerWalls);
         CGContextStrokeRect(context, outerWalls);
     }
-
 
 }
