@@ -24,6 +24,14 @@ class Util {
         return pixels * SCALE;
     }
     
-    
+    // Utility routine to convert cm to feet and inches
+    class func cmToFeetInches(centimeters cm: Int) -> String {
+        var inches: Float = Float(cm) / 2.54;
+        var feet: Int = Int(inches)  / 12;
+        
+        inches = inches - (12 * Float(feet));
+        return String(format: "%d' %.1f\"", feet, inches);
+    }
+
     
 }

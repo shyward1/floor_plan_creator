@@ -27,53 +27,38 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     // person holding the iPad away from their body.  2' is ~61cm.
     let DISTANCE_BODY_OFFSET = 61;
     
+    let HELP_TEXT_POINT: String = String("Point to the wall and click measure");
+    
+    let house = UIImage(named: "house");
+    let rotate = UIImage(named: "rotate");
+    
     var captureButton: UIButton = UIButton();
     var title: UILabel = UILabel();
     var distanceLabel: UILabel = UILabel();
     var numRoomsLabel: UILabel = UILabel();
+    var houseImgView: UIImageView!
+    var rotateImgView: UIImageView!
+    var txtRoomName: UITextField!
+    var imgView_North: ArrowImageView!
+    var imgView_South: ArrowImageView!
+    var imgView_East: ArrowImageView!
+    var imgView_West: ArrowImageView!
     
     // sub view that the distance label and arrows are on
     var floatingCanvas: UIView = UIView();
-    
-    let arrow0 = UIImage(named: "arrow-up-0");
-    let arrow10 = UIImage(named: "arrow-up-10");
-    let arrow20 = UIImage(named: "arrow-up-20");
-    let arrow30 = UIImage(named: "arrow-up-30");
-    let arrow40 = UIImage(named: "arrow-up-40");
-    let arrow50 = UIImage(named: "arrow-up-50");
-    let arrow60 = UIImage(named: "arrow-up-60");
-    let arrow70 = UIImage(named: "arrow-up-70");
-    let arrow80 = UIImage(named: "arrow-up-80");
-    let arrow90 = UIImage(named: "arrow-up-90");
-    let arrow100 = UIImage(named: "arrow-up-100");
-    let checkmark = UIImage(named: "checkmark");
-    let house = UIImage(named: "house");
-    let rotate = UIImage(named: "rotate");
-    
-    let HELP_TEXT_POINT: String = String("Point to the wall and click measure");
-    
-    var imgView_North: UIImageView!
-    var imgView_South: UIImageView!
-    var imgView_East: UIImageView!
-    var imgView_West: UIImageView!
-    var houseImgView: UIImageView!
-    var rotateImgView: UIImageView!
-    
-    var txtRoomName: UITextField!
 
     var rangefinder: Rangefinder!
     var parent: MeasureRoomViewController!
     
     var timer: NSTimer!
     
-    // keeps track of which wall is being measured
     enum Direction {
         case NORTH
         case EAST
         case SOUTH
         case WEST
     }
-    
+
     var isRotating: Bool = false;
     var hasStartedRotating: Bool = false;
     
@@ -121,6 +106,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         // set border and background color
         self.backgroundColor = UIColor.whiteColor();
         
+        // title help text label
         title.frame = CGRect(x: self.frame.size.width*2/3-150.0, y: 70.0, width: 300.0, height: 20.0);
         title.textAlignment = NSTextAlignment.Center;
         title.textColor = colorThemeBlue;
@@ -133,6 +119,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         floatingCanvas.layer.borderColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [0.1, 0.1, 0.1, 0.1]);
         self.addSubview(floatingCanvas);
         
+        // rangefinder distance label inside floating canvas
         distanceLabel.frame = CGRect(x: 0.0, y: floatingCanvas.frame.size.height/2-25.0, width: floatingCanvas.frame.size.width, height: 50.0);
         distanceLabel.textAlignment = NSTextAlignment.Center;
         distanceLabel.textColor = UIColor.blackColor();
@@ -140,25 +127,20 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         distanceLabel.text = "";
         floatingCanvas.addSubview(distanceLabel);
         
-        // draw the arrow images and distance labels
-        let arrowArray: [UIImage] = [arrow0, arrow10, arrow20, arrow30, arrow40, arrow50, arrow60, arrow70, arrow80, arrow90, arrow100];
-        
+        // big rotation arrow centered on iPad landscape mode
         rotateImgView = UIImageView();
         rotateImgView.image = rotate;
-        
-        // center image in iPad landscape mode
         rotateImgView.frame = CGRect(x: self.frame.size.width*2/3-rotate.size.width/2, y: frame.size.height/2-rotate.size.height,
             width: rotate.size.width,
             height: rotate.size.height);
-        // set initial alpha to 0 (translucent)
         rotateImgView.alpha = 0.0;
         self.addSubview(rotateImgView);
         
+        // house image and number of rooms label
         houseImgView = UIImageView();
         houseImgView.image = house;
         houseImgView.frame = CGRect(x: 30.0, y: 80.0, width: house.size.width, height: house.size.width);
         self.addSubview(houseImgView);
-        
         numRoomsLabel.frame = CGRect(x: 30.0+house.size.width, y: houseImgView.frame.origin.y-5.0, width: 20.0, height: 20.0);
         numRoomsLabel.textAlignment = NSTextAlignment.Center;
         numRoomsLabel.textColor = colorThemeBlue;
@@ -166,42 +148,21 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         numRoomsLabel.text = String(FloorPlanDAO.sharedInstance.countRooms());
         self.addSubview(numRoomsLabel);
 
-        imgView_North = UIImageView();
-        imgView_North.animationImages = arrowArray;
-        imgView_North.animationDuration = 1.0;
-        imgView_North?.frame = CGRect(  x: floatingCanvas.frame.size.width/2 - arrow0.size.width/2, y: 30.0, width: arrow0.size.width, height: arrow0.size.height);
-        floatingCanvas.addSubview(imgView_North);
-        imgView_North.startAnimating();
-        
-        imgView_East = UIImageView();
-        imgView_East.animationImages = arrowArray;
-        imgView_East.animationDuration = 1.0;
-        imgView_East?.frame = CGRect(   x: floatingCanvas.frame.size.width - 30 - arrow0.size.height, y: floatingCanvas.frame.size.height/2 - arrow0.size.height/2, width: arrow0.size.width, height: arrow0.size.height);
-        imgView_East?.hidden = true;
-        floatingCanvas.addSubview(imgView_East);
-        imgView_East.startAnimating();
-        // rotate the arrow image by 90˚
-        imgView_East.transform = CGAffineTransformMakeRotation(π/2);
-        
-        imgView_South = UIImageView();
-        imgView_South.animationImages = arrowArray;
-        imgView_South.animationDuration = 1.0;
-        imgView_South?.frame = CGRect(  x: floatingCanvas.frame.size.width/2 - arrow0.size.width/2,
-            y: floatingCanvas.frame.size.height - 30 - arrow0.size.height, width: arrow0.size.width, height: arrow0.size.height)
-        imgView_South?.hidden = true;
-        floatingCanvas.addSubview(imgView_South);
-        imgView_South.startAnimating();
-        imgView_South.transform = CGAffineTransformMakeRotation(π);
-        
-        imgView_West = UIImageView();
-        imgView_West.animationImages = arrowArray;
-        imgView_West.animationDuration = 1.0;
-        imgView_West?.frame = CGRect(   x: 30,
-            y: floatingCanvas.frame.size.height/2 - arrow0.size.height/2, width: arrow0.size.width, height: arrow0.size.height);
-        imgView_West?.hidden = true;
-        floatingCanvas.addSubview(imgView_West);
-        imgView_West.startAnimating();
-        imgView_West.transform = CGAffineTransformMakeRotation(-π/2);
+        // animated arrow images placed on the floating canvas with 30 pixel padding
+        imgView_North = ArrowImageView(center: CGPoint(x: floatingCanvas.frame.size.width / 2.0, y: 80.0));
+        imgView_South = ArrowImageView(center: CGPoint(x: floatingCanvas.frame.size.width / 2.0, y: floatingCanvas.frame.size.height - 80.0));
+        imgView_South.direction = ArrowDirection.DOWN;
+        imgView_South.hidden = true;
+        imgView_East = ArrowImageView(center: CGPoint(x: floatingCanvas.frame.size.width - 80.0, y: floatingCanvas.frame.size.height / 2.0));
+        imgView_East.direction = ArrowDirection.RIGHT;
+        imgView_East.hidden = true;
+        imgView_West = ArrowImageView(center: CGPoint(x: 80.0, y: floatingCanvas.frame.size.height / 2.0));
+        imgView_West.direction = ArrowDirection.LEFT;
+        imgView_West.hidden = true;
+        floatingCanvas.addSubview(imgView_North as UIImageView);
+        floatingCanvas.addSubview(imgView_South as UIImageView);
+        floatingCanvas.addSubview(imgView_East as UIImageView);
+        floatingCanvas.addSubview(imgView_West as UIImageView);
         
         // draw the capture circle button
         captureButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton;
@@ -238,7 +199,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         locationManager?.stopUpdatingHeading();
     }
     
-    // called by parent
+    // called by parent when preparing to measure a new room
     func newRoom() {
         distanceToNorthWall = 0;
         distanceToSouthWall = 0;
@@ -256,7 +217,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         var captureButtonAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "captureButtonAnimation", userInfo: nil, repeats: true);
     }
     
-    // creates a room object and saves it with the parent
+    // creates a room object and saves it
     func saveRoom() {
         var width = CGFloat(distanceToEastWall + distanceToWestWall + DISTANCE_BODY_OFFSET);
         var depth = CGFloat(distanceToNorthWall + distanceToSouthWall + DISTANCE_BODY_OFFSET);
@@ -282,9 +243,8 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     
     // saves distance reading and prepares the view to capture the next distance measurement
     func capture(sender: UIButton!) {
-        
         // update title label
-        title.text = "Distance to wall is " + self.cmToFeetInches(self.distance!);
+        title.text = "Distance to wall is " + Util.cmToFeetInches(centimeters: self.distance!);
         
         // fade out
         UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
@@ -294,103 +254,49 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
                 self.distanceLabel.hidden = true;
                 self.captureButton.hidden = true;
             }
-        
-        var checkboxRect: CGRect;
-        
-        // save distance
+
         switch currentDirection {
         
         case .NORTH:
             distanceToNorthWall = distance!;
             
-            // This is the first measurement; set the initial CLLocationManager heading
+            // This is the first measurement; remember the initial CLLocationManager heading
             setInitialHeading();
             
-            checkboxRect = CGRect(  x: imgView_North.frame.origin.x + imgView_North.frame.size.width/2 - checkmark.size.width/2,
-                y: imgView_North.frame.origin.y,
-                width: checkmark.size.width,
-                height: checkmark.size.height);
-            imgView_North.stopAnimating();
-            imgView_North.alpha = 0.0;
-            imgView_North.image = checkmark;
-            imgView_North.frame = checkboxRect;
+            // change the arrow to a checkmark image
+            imgView_North.setChecked();
             
-            // fade checkmark image in
-            UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                self.imgView_North.alpha = 1.0;
-                }) { (Bool) -> Void in
-            }
-  
         case .SOUTH:
             distanceToSouthWall = distance!;
             
-            checkboxRect = CGRect(  x: floatingCanvas.frame.size.width/2 - checkmark.size.width/2,
-                                    y: floatingCanvas.frame.size.height - 30 - checkmark.size.height,
-                                width: checkmark.size.width,
-                               height: checkmark.size.height);
-            
-            imgView_South.stopAnimating();
-            imgView_South.alpha = 0.0;
-            imgView_South.image = checkmark;
-            imgView_South.frame = checkboxRect;
-            imgView_South.transform = CGAffineTransformMakeRotation(π);
-            
-            // fade checkmark image in
-            UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                self.imgView_South.alpha = 1.0;
-                }) { (Bool) -> Void in
-            }
+            imgView_South.setChecked();
+            imgView_South.direction = ArrowDirection.UP;
 
         case .EAST:
             distanceToEastWall = distance!;
             
-            checkboxRect = CGRect(  x: floatingCanvas.frame.size.width - 30 - checkmark.size.height,
-                                    y: floatingCanvas.frame.size.height/2 - checkmark.size.height/2,
-                                width: checkmark.size.width,
-                               height: checkmark.size.height);
-
-            imgView_East.stopAnimating();
-            imgView_East.alpha = 0.0;
-            imgView_East.image = checkmark;
-            imgView_East.frame = checkboxRect;
+            imgView_East.setChecked();
             
-            // fade checkmark image in
-            UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                self.imgView_East.alpha = 1.0;
-                }) { (Bool) -> Void in
-            }
- 
         case .WEST:
             isFinishedMeasuring = true;
             isRotating = false;
             distanceToWestWall = distance!;
             
-            checkboxRect = CGRect(  x: 30,
-                                    y: floatingCanvas.frame.size.height/2 - checkmark.size.height/2,
-                                width: checkmark.size.width,
-                               height: checkmark.size.height);
-            
-            imgView_West.stopAnimating();
-            imgView_West.alpha = 0.0;
-            imgView_West.image = checkmark;
-            imgView_West.frame = checkboxRect;
-
-            var width = cmToFeetInches(distanceToEastWall + distanceToWestWall + DISTANCE_BODY_OFFSET);
-            var height = cmToFeetInches(distanceToNorthWall + distanceToSouthWall + DISTANCE_BODY_OFFSET);
+            var width = Util.cmToFeetInches(centimeters: distanceToEastWall + distanceToWestWall + DISTANCE_BODY_OFFSET);
+            var height = Util.cmToFeetInches(centimeters: distanceToNorthWall + distanceToSouthWall + DISTANCE_BODY_OFFSET);
             
             // fade title out with individual measurement distance text and fade in room dimensions text
             UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
                 self.title.alpha = 0.0;
                 }) { (Bool) -> Void in
                     self.title.text = String(format:"%@ x %@", width, height);
+                    UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+                        self.title.alpha = 1.0;
+                        }) { (Bool) -> Void in
+                    }
             }
             
-            // fade checkmark image and room dimensions title in
-            UIView.animateWithDuration(0.5, delay: 1.5, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                self.imgView_West.alpha = 1.0;
-                self.title.alpha = 1.0;
-                }) { (Bool) -> Void in
-            }
+            imgView_West.setChecked();
             
             // add this Room object to the array of rooms for this floor and floor plan
             saveRoom();
@@ -413,7 +319,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     func displayDistance() {
         if (!isFinishedMeasuring) {
             self.distance = Int(self.rangefinder.distance);
-            self.distanceLabel.text = self.cmToFeetInches(self.distance!);
+            self.distanceLabel.text = Util.cmToFeetInches(centimeters: self.distance!);
         }
     }
     
@@ -447,6 +353,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(snapRadians));
         isRotating = false;
         hasStartedRotating = false;
+        
         displayNextDirection();
     }
     
@@ -471,41 +378,34 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
             
             // after rotating make the checkbox face the right direction again
             distanceLabel.transform = CGAffineTransformMakeRotation(π/2);
-            imgView_North.transform = CGAffineTransformMakeRotation(π/2);
+            imgView_North.direction = ArrowDirection.RIGHT;
+            //imgView_North.transform = CGAffineTransformMakeRotation(π/2);
             imgView_East.hidden = false;
 
         case .EAST:
             currentDirection = .SOUTH
             
             distanceLabel.transform = CGAffineTransformMakeRotation(π);
-            imgView_North.transform = CGAffineTransformMakeRotation(π);
-            imgView_East.transform = CGAffineTransformMakeRotation(π);
+            imgView_North.direction = ArrowDirection.DOWN;
+            imgView_East.direction = ArrowDirection.DOWN;
+            //imgView_North.transform = CGAffineTransformMakeRotation(π);
+            //imgView_East.transform = CGAffineTransformMakeRotation(π);
             imgView_South.hidden = false;
 
         case .SOUTH:
             currentDirection = .WEST
 
             distanceLabel.transform = CGAffineTransformMakeRotation(3*π/2);
-            imgView_North.transform = CGAffineTransformMakeRotation(3*π/2);
-            imgView_East.transform = CGAffineTransformMakeRotation(3*π/2);
-            imgView_South.transform = CGAffineTransformMakeRotation(3*π/2);
+            imgView_North.direction = ArrowDirection.LEFT;
+            imgView_East.direction = ArrowDirection.LEFT;
+            imgView_South.direction = ArrowDirection.LEFT;
+            //imgView_North.transform = CGAffineTransformMakeRotation(3*π/2);
+            //imgView_East.transform = CGAffineTransformMakeRotation(3*π/2);
+            //imgView_South.transform = CGAffineTransformMakeRotation(3*π/2);
             imgView_West.hidden = false;
-            
         case .WEST:
-            currentDirection = .NORTH
-            
+            currentDirection = .NORTH;
         }
-    }
-    
-// MARK: - Utility Methods
-    
-    // Utility routine to convert cm to feet and inches
-    private func cmToFeetInches(cm: Int) -> String {
-        var inches: Float = Float(cm) / 2.54;
-        var feet: Int = Int(inches)  / 12;
-        
-        inches = inches - (12 * Float(feet));
-        return String(format: "%d' %.1f\"", feet, inches);
     }
 
 // MARK: - UITextField Delegate Methods
@@ -566,28 +466,24 @@ extension CreateRoomView: CLLocationManagerDelegate {
                 if (abs(newRad) > abs(initialHeading) + M_PI_4
                     && abs(abs(newRad) - abs(initialHeading)) - M_PI_2 < 0.1
                     && abs(abs(newRad) - abs(initialHeading)) - M_PI_2 > -0.1) {
-                    
-                        println("snap after north");
+
                         snapTo90Degrees(-M_PI_2);
                 }
             case .EAST:
                 if (abs(abs(newRad) - abs(initialHeading)) - M_PI < 0.1
                     && abs(abs(newRad) - abs(initialHeading)) - M_PI > -0.1) {
-                    
-                        println("snap after east");
+
                         snapTo90Degrees(-M_PI);
                 }
             case .SOUTH:
                 if ( abs(abs(newRad) - abs(initialHeading)) - (3.0 * M_PI_2) < 0.1
                     && abs(abs(newRad) - abs(initialHeading)) - (3.0 * M_PI_2) > -0.1) {
-                    
-                        println("snap after south -3pi/2");
+
                         snapTo90Degrees(-3 * M_PI_2);
                 }
                 else if (abs(abs(newRad) - abs(initialHeading)) - M_PI_2 < 0.1
                     && abs(abs(newRad) - abs(initialHeading)) - M_PI_2 > -0.1) {
-                        
-                        println("snap after south, -3 * pi/2");
+
                         snapTo90Degrees(-3 * M_PI_2);
                 }
             case .WEST:
