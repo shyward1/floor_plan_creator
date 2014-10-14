@@ -23,6 +23,7 @@
 		104C4E5019E2EE0C009146C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 104C4E4F19E2EE0C009146C2 /* Images.xcassets */; };
 		107E7AD819E6DF3300BC0644 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107E7AD719E6DF3300BC0644 /* LevelView.swift */; };
 		107E7ADA19E6DF5F00BC0644 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107E7AD919E6DF5F00BC0644 /* CoreMotion.framework */; };
+		10AACEBB19EC896A00AA1882 /* ArrowImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AACEBA19EC896A00AA1882 /* ArrowImageView.swift */; };
 		10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */; };
 		10EEA5F119DC8C6C004D9A74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */; };
 		10EEA5F319DC8C7B004D9A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EEA5F219DC8C7B004D9A74 /* UIKit.framework */; };
@@ -62,6 +63,7 @@
 		104C4E4F19E2EE0C009146C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		107E7AD719E6DF3300BC0644 /* LevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		107E7AD919E6DF5F00BC0644 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		10AACEBA19EC896A00AA1882 /* ArrowImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowImageView.swift; sourceTree = "<group>"; };
 		10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateRoomView.swift; path = ../CreateRoomView.swift; sourceTree = "<group>"; };
 		10EEA5F019DC8C6C004D9A74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		10EEA5F219DC8C7B004D9A74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -148,6 +150,7 @@
 				1043716919E5C5D900FC5C6D /* MeasureRoomViewController.xib */,
 				107E7AD719E6DF3300BC0644 /* LevelView.swift */,
 				10EEA5EC19DC56BE004D9A74 /* CreateRoomView.swift */,
+				10AACEBA19EC896A00AA1882 /* ArrowImageView.swift */,
 				1002DDA319E73120003E01C4 /* FloorPlanDAO.swift */,
 				1002DD9F19E701A5003E01C4 /* Room.swift */,
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
@@ -293,6 +296,7 @@
 				10EEA5ED19DC56BE004D9A74 /* CreateRoomView.swift in Sources */,
 				107E7AD819E6DF3300BC0644 /* LevelView.swift in Sources */,
 				1002DDA019E701A5003E01C4 /* Room.swift in Sources */,
+				10AACEBB19EC896A00AA1882 /* ArrowImageView.swift in Sources */,
 				1002DDA219E72220003E01C4 /* Util.swift in Sources */,
 				1043716A19E5C5D900FC5C6D /* MeasureRoomViewController.swift in Sources */,
 				10EEA5F819DC97A7004D9A74 /* Rangefinder.m in Sources */,
