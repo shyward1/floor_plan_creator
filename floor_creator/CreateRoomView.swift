@@ -151,14 +151,8 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         // animated arrow images placed on the floating canvas with 30 pixel padding
         imgView_North = ArrowImageView(center: CGPoint(x: floatingCanvas.frame.size.width / 2.0, y: 80.0));
         imgView_South = ArrowImageView(center: CGPoint(x: floatingCanvas.frame.size.width / 2.0, y: floatingCanvas.frame.size.height - 80.0));
-        imgView_South.direction = ArrowDirection.DOWN;
-        imgView_South.hidden = true;
         imgView_East = ArrowImageView(center: CGPoint(x: floatingCanvas.frame.size.width - 80.0, y: floatingCanvas.frame.size.height / 2.0));
-        imgView_East.direction = ArrowDirection.RIGHT;
-        imgView_East.hidden = true;
         imgView_West = ArrowImageView(center: CGPoint(x: 80.0, y: floatingCanvas.frame.size.height / 2.0));
-        imgView_West.direction = ArrowDirection.LEFT;
-        imgView_West.hidden = true;
         floatingCanvas.addSubview(imgView_North as UIImageView);
         floatingCanvas.addSubview(imgView_South as UIImageView);
         floatingCanvas.addSubview(imgView_East as UIImageView);
@@ -206,10 +200,36 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         distanceToEastWall  = 0;
         distanceToWestWall  = 0;
         
-        currentDirection = .NORTH;
-        
         isFinishedMeasuring = false;
         locationManager!.startUpdatingHeading();
+        
+        // position arrow images
+        imgView_North.direction = ArrowDirection.UP;
+        imgView_North.setArrow(duration: 0.0);
+        imgView_North.hidden = false;
+        imgView_South.direction = ArrowDirection.DOWN;
+        imgView_South.hidden = true;
+        imgView_South.setArrow(duration: 0.0);
+        imgView_East.direction = ArrowDirection.RIGHT;
+        imgView_East.hidden = true;
+        imgView_East.setArrow(duration: 0.0);
+        imgView_West.direction = ArrowDirection.LEFT;
+        imgView_West.hidden = true;
+        imgView_West.setArrow(duration: 0.0);
+        
+        // make sure we are pointing in the right direction
+        switch currentDirection {
+        case .NORTH:
+            println("already pointing in the correct direction");
+        case .SOUTH:
+            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(π));
+        case .EAST:
+            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(-π/2));
+        case .WEST:
+            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(π/2));
+        }
+        
+        currentDirection = .NORTH;
         
         // kick off scheduled timer to read rangefinder distance and display it on a label
         timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "displayDistance", userInfo: nil, repeats: true);
@@ -269,8 +289,8 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         case .SOUTH:
             distanceToSouthWall = distance!;
             
+            //imgView_South.direction = ArrowDirection.UP;
             imgView_South.setChecked();
-            imgView_South.direction = ArrowDirection.UP;
 
         case .EAST:
             distanceToEastWall = distance!;
@@ -428,9 +448,11 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     
 }
 
-extension CreateRoomView: CLLocationManagerDelegate {
 
 // MARK: - Location Manager Methods
+
+extension CreateRoomView: CLLocationManagerDelegate {
+
     func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
         
         // rotate display

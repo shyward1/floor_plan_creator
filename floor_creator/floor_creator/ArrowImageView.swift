@@ -49,6 +49,9 @@ class ArrowImageView: UIImageView {
         }
     }
     
+    // true when arrow image is being displayed; false otherwise
+    var isArrow: Bool = true;
+    
     
     // public constructor
     init(center: CGPoint) {
@@ -85,18 +88,64 @@ class ArrowImageView: UIImageView {
 
     // replaces the arrow animation with a checkmark
     func setChecked(duration dur: NSTimeInterval = DEFAULT_DURATION, delay del: NSTimeInterval = DEFAULT_DELAY) {
+        if (!isArrow) {
+            return;
+        }
+        
         fadeOut(duration: dur/2, delay: del);
         self.stopAnimating();
         self.image = checkmark;
+        
+        // resize for arrow animated image
+        var centerPoint = self.center;
+        
+        switch self.direction {
+        case .UP:
+            centerPoint.y -= arrow0.size.height / 2.0;
+        case .RIGHT:
+            centerPoint.x += arrow0.size.height / 2.0;
+        case .DOWN:
+            centerPoint.y += arrow0.size.height / 2.0;
+        case .LEFT:
+            centerPoint.x -= arrow0.size.height / 2.0;
+        }
+
+        self.frame = CGRect(x: 0.0, y: 0.0, width: checkmark.size.width, height: checkmark.size.height);
+        self.center = centerPoint;
+        
         fadeIn(duration: dur/2, delay: 0.0);
+        isArrow = false;
     }
     
     // replaces the checkmark image with an arrow animation
     func setArrow(duration dur: NSTimeInterval = DEFAULT_DURATION, delay del: NSTimeInterval = DEFAULT_DELAY) {
+        if (isArrow) {
+            return;
+        }
+        
         fadeOut(duration: dur/2, delay: del);
         self.animationImages = arrowArray;
         self.startAnimating();
+        
+        // resize for arrow animated image
+        var centerPoint = self.center;
+        
+        switch self.direction {
+        case .UP:
+            centerPoint.y += arrow0.size.height / 2.0;
+        case .RIGHT:
+            centerPoint.x -= arrow0.size.height / 2.0;
+        case .DOWN:
+            centerPoint.y -= arrow0.size.height / 2.0;
+        case .LEFT:
+            centerPoint.x += arrow0.size.height / 2.0;
+        }
+        
+        self.frame = CGRect(x: 0.0, y: 0.0, width: arrow0.size.width, height: arrow0.size.height);
+        self.center = centerPoint;
+
         fadeIn(duration: dur/2, delay: 0.0);
+        isArrow = true;
     }
     
     // rotates this arrow to the direction in parameter toDirection

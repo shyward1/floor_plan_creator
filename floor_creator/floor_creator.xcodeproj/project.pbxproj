@@ -32,7 +32,6 @@
 		7B87DD0A19DC4A7B00DEAF73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */; };
 		7B87DD0C19DC4A7B00DEAF73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */; };
 		7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */; };
-		7B87DD1419DC4A7B00DEAF73 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */; };
 		7B87DD2019DC4A7B00DEAF73 /* floor_creatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87DD1F19DC4A7B00DEAF73 /* floor_creatorTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,7 +75,6 @@
 		7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7B87DD0E19DC4A7B00DEAF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7B87DD1319DC4A7B00DEAF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7B87DD1919DC4A7B00DEAF73 /* floor_creatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = floor_creatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87DD1E19DC4A7B00DEAF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B87DD1F19DC4A7B00DEAF73 /* floor_creatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = floor_creatorTests.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				7B87DD0B19DC4A7B00DEAF73 /* ViewController.swift */,
 				7B87DD0919DC4A7B00DEAF73 /* AppDelegate.swift */,
 				7B87DD0D19DC4A7B00DEAF73 /* Main.storyboard */,
-				7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */,
 				7B87DD0719DC4A7B00DEAF73 /* Supporting Files */,
 				10EEA5F919DC9810004D9A74 /* Rangefinder.h */,
 				10EEA5F719DC97A7004D9A74 /* Rangefinder.m */,
@@ -274,7 +271,6 @@
 				1043716B19E5C5D900FC5C6D /* MeasureRoomViewController.xib in Resources */,
 				104C4E5019E2EE0C009146C2 /* Images.xcassets in Resources */,
 				7B87DD0F19DC4A7B00DEAF73 /* Main.storyboard in Resources */,
-				7B87DD1419DC4A7B00DEAF73 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,14 +326,6 @@
 				7B87DD0E19DC4A7B00DEAF73 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7B87DD1219DC4A7B00DEAF73 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7B87DD1319DC4A7B00DEAF73 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

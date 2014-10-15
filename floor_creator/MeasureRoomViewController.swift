@@ -113,7 +113,7 @@ class MeasureRoomViewController: UIViewController {
         readyButton.setTitleColor(colorThemeBlue, forState: .Normal);
         readyButton.titleLabel?.font = UIFont(name:"Helvetica", size: 16.0)
         readyButton.addTarget(self, action: "readyButtonClicked:", forControlEvents: .TouchUpInside);
-        readyButton.frame = CGRect(x: 30, y: self.view.frame.size.height/2-1.0, width: 80.0, height: 80.0);
+        readyButton.frame = CGRect(x: 30, y: self.view.frame.size.height/2 - 38.0, width: 80.0, height: 80.0);
         readyButton.clipsToBounds = true;
         readyButton.layer.cornerRadius = 40.0;
         readyButton.layer.borderColor = colorThemeBlue.CGColor;
