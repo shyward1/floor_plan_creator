@@ -163,7 +163,7 @@ class MeasureRoomViewController: UIViewController {
         
         // fade in ready to measure button
         self.readyButton.hidden = false;
-        UIView.animateWithDuration(2.0, delay: 4.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animateWithDuration(1.0, delay: 4.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.readyButton.alpha = 1.0;
             }) { (Bool) -> Void in
         }

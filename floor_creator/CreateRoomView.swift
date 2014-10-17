@@ -51,6 +51,7 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
     var parent: MeasureRoomViewController!
     
     var timer: NSTimer!
+    var captureButtonAnimationTimer: NSTimer!
     
     enum Direction {
         case NORTH
@@ -199,9 +200,32 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         distanceToSouthWall = 0;
         distanceToEastWall  = 0;
         distanceToWestWall  = 0;
-        
+        title.text = "";
+        distanceLabel.hidden = false;
+        distanceLabel.alpha = 1.0
+        captureButton.hidden = false;
+        captureButton.alpha = 1.0;
+        roomName = "Unnamed Room";
         isFinishedMeasuring = false;
-        locationManager!.startUpdatingHeading();
+        
+        // rotate the floating canvas to point in the right direction
+        switch currentDirection {
+        case .NORTH:
+            println("current direction is North");
+        case .SOUTH:
+            println("current direction is South");
+            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(π));
+        case .EAST:
+            println("current direction is East");
+            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(-π/2));
+        case .WEST:
+            println("current direction is West");
+            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(2*π));
+            distanceLabel.transform = CGAffineTransformMakeRotation(CGFloat(2*π));
+        }
+        
+        // set the current direction
+        currentDirection = .NORTH;
         
         // position arrow images
         imgView_North.direction = ArrowDirection.UP;
@@ -217,24 +241,12 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
         imgView_West.hidden = true;
         imgView_West.setArrow(duration: 0.0);
         
-        // make sure we are pointing in the right direction
-        switch currentDirection {
-        case .NORTH:
-            println("already pointing in the correct direction");
-        case .SOUTH:
-            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(π));
-        case .EAST:
-            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(-π/2));
-        case .WEST:
-            floatingCanvas.transform = CGAffineTransformMakeRotation(CGFloat(π/2));
-        }
-        
-        currentDirection = .NORTH;
+        locationManager!.startUpdatingHeading();
         
         // kick off scheduled timer to read rangefinder distance and display it on a label
         timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "displayDistance", userInfo: nil, repeats: true);
         
-        var captureButtonAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "captureButtonAnimation", userInfo: nil, repeats: true);
+        captureButtonAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "captureButtonAnimation", userInfo: nil, repeats: true);
     }
     
     // creates a room object and saves it
@@ -399,7 +411,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
             // after rotating make the checkbox face the right direction again
             distanceLabel.transform = CGAffineTransformMakeRotation(π/2);
             imgView_North.direction = ArrowDirection.RIGHT;
-            //imgView_North.transform = CGAffineTransformMakeRotation(π/2);
             imgView_East.hidden = false;
 
         case .EAST:
@@ -408,8 +419,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
             distanceLabel.transform = CGAffineTransformMakeRotation(π);
             imgView_North.direction = ArrowDirection.DOWN;
             imgView_East.direction = ArrowDirection.DOWN;
-            //imgView_North.transform = CGAffineTransformMakeRotation(π);
-            //imgView_East.transform = CGAffineTransformMakeRotation(π);
             imgView_South.hidden = false;
 
         case .SOUTH:
@@ -419,9 +428,6 @@ class CreateRoomView: UIView, CLLocationManagerDelegate, UITextFieldDelegate {
             imgView_North.direction = ArrowDirection.LEFT;
             imgView_East.direction = ArrowDirection.LEFT;
             imgView_South.direction = ArrowDirection.LEFT;
-            //imgView_North.transform = CGAffineTransformMakeRotation(3*π/2);
-            //imgView_East.transform = CGAffineTransformMakeRotation(3*π/2);
-            //imgView_South.transform = CGAffineTransformMakeRotation(3*π/2);
             imgView_West.hidden = false;
         case .WEST:
             currentDirection = .NORTH;

@@ -84,7 +84,7 @@ class LevelView: UIView {
         
         //convert to degrees
         var z_degree = z * (180.0 / π);
-        println("z degree: \(z_degree)")
+        //println("z degree: \(z_degree)")
 
         //are we level go green otherwise red
         if(z_degree >= -11.0 && z_degree <= 11.0) {
